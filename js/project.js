@@ -1,3 +1,4 @@
+/*global THREE*/
 
 var camera, scene, renderer;
 var material, geometry, mesh;
@@ -5,10 +6,13 @@ var material, geometry, mesh;
 function createCamera(){
     'use strict';
 
-    camera = new THREE.OrthographicCamera();
-    camera.position.x = ;
-    camera.position.y = ;
-    camera.position.z = ;
+    var width = 50; /*atribuimos estes valores arbitrarios por agora*/
+    var height = 50;
+
+    camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
+    camera.position.x = 50;
+    camera.position.y = 50;
+    camera.position.z = 50;
     camera.lookAt(scene.position);
 }
 
@@ -19,40 +23,45 @@ function createScene(){
 }
 
 
-function init() {
-    'use strict';
-
-    renderer = new THREE.WebGlRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    aspectratio = window.innerWidth / window.innerHeight;
-    document.body.appendChild(renderer.domElement);
-
-    createScene();
-    render();
-
-    window.addEventListener("keydown", onKeyDown);
-}
-
 function render() {
     'use strict';
     renderer.render(scene, camera);
 }
 
-function onKeyDown(e) {
+function init() {
     'use strict';
 
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    document.body.appendChild(renderer.domElement);
+
+    createScene();
+    createCamera();
+    render();
+
+    window.addEventListener("keydown", onKeyDown);
+}
+
+function animate() {
+
+}
+
+function onKeyDown(e) {
+    'use strict';
+    
+
     switch(e.keyCode) {
-        case 49: // Tecla 1
+        /*case 49: // Tecla 1 - Cameral vista lateral/topo(?)
 
             break;
-        case 51: // Tecla 3
+        case 51: // Tecla 3 - Camera vista frontal
 
-            break;
+            break;*/
         case 52: // Tecla 4
             materialArray[i].wireframe = !materialArray[i].wireframe;
             break;
-        case 38:   // Tecla Up
+        /*case 38:   // Tecla Up - deslocar o robo
 
             break;
         case 40:  // Tecla Down
@@ -64,21 +73,17 @@ function onKeyDown(e) {
         case 39: // Tecla Right
             
             break;
-        case 65: // Tecla A
+        case 65: // Tecla A e a - controlar angulo 1
 
-        case 95: // Tecla a
+            break;
+        case 83: // Tecla S e s - controlar angulo 1
 
-        case 83: // Tecla S
+            break;
+        case 87: // Tecla W e w - controlar angulo 2
 
-        case 115: // Tecla s
+            break;
+        case 81: // Tecla Q e q - controlar angulo 2
 
-        case 87: // Tecla W
-
-        case : // Tecla w
-
-        case 81: // Tecla Q
-
-        case : // Tecla q
-        
+            break;*/
     }
 }
