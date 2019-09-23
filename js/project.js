@@ -20,6 +20,9 @@ function createScene(){
     'use strict';
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(10));
+    
+    createSupport(0, 0, 0);
+    createTorus(0, 20, 0);
 }
 
 
@@ -43,6 +46,32 @@ function init() {
     window.addEventListener("keydown", onKeyDown);
 }
 
+function createSupport(x, y, z) {
+    'use strict';
+
+    var support = new THREE.Object3D();
+    material = new THREE.MeshBasicMaterial({color: '#1e2c3e', wireframe: true});
+    geometry = new THREE.CylinderGeometry(5, 5, 20, 50, 24);
+    mesh = new THREE.Mesh(geometry, material);
+    
+    support.add(mesh);
+    support.position.set(x, y, z);
+    scene.add(support);
+}
+
+function createTorus(x, y, z) {
+    'use strict';
+
+    var torus = new THREE.Object3D();
+    material = new THREE.MeshBasicMaterial({color: '#d40a47', wireframe: true});
+    geometry = new THREE.TorusGeometry(5, 2, 16, 100);
+    mesh = new THREE.Mesh(geometry, material);
+
+    torus.add(mesh);
+    torus.position.set(x, y, z);
+    scene.add(torus);
+}
+
 function animate() {
 
 }
@@ -59,7 +88,11 @@ function onKeyDown(e) {
 
             break;*/
         case 52: // Tecla 4
-            materialArray[i].wireframe = !materialArray[i].wireframe;
+            scene.traverse(function (node){
+                if(node instanceof THREE.Mesh){
+                    node.material.wireframe = !node.material.wireframe;
+                }
+            });
             break;
         /*case 38:   // Tecla Up - deslocar o robo
 
@@ -86,4 +119,6 @@ function onKeyDown(e) {
 
             break;*/
     }
+
+    render();
 }
