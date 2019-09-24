@@ -1,33 +1,8 @@
 /* global THREE */
 
-var camera, scene, renderer;
+var scene, renderer;
 
-function createCamera() {
-    'use strict';
-
-    var width = 50; /* atributed values for now */
-    var height = 50;
-
-    camera = new THREE.OrthographicCamera( -width/2, width/2, height/2, -height/2, 1, 1000 );
-    camera.position.x = 35;
-    camera.position.y = 20;
-    camera.position.z = 50;
-    camera.lookAt(scene.position);
-}
-
-function createScene(){
-    'use strict';
-    scene = new THREE.Scene();
-    scene.add(new THREE.AxisHelper(10));
-
-    createTarget(0, 0, 0)
-}
-
-
-function render() {
-    'use strict';
-    renderer.render(scene, camera);
-}
+var cameras = [], selected_camera;
 
 function init() {
     'use strict';
@@ -38,12 +13,35 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     createScene();
-    createCamera();
+    createAllCameras();
     render();
 
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("resize", onResize);
 }
+
+function createScene() {
+    'use strict';
+    scene = new THREE.Scene();
+    scene.add(new THREE.AxisHelper(5));
+
+    createTarget(0, 0, 0)
+}
+
+function createAllCameras() {
+    cameras.push( createTopViewCamera() );
+    cameras.push( createSideViewCamera() );
+    cameras.push( createFrontViewCamera() );
+
+    selected_camera = 0;
+}
+
+
+function render() {
+    'use strict';
+    renderer.render(scene, cameras[selected_camera]);
+}
+
 
 function animate() {
 
@@ -59,7 +57,6 @@ function onResize() {
     }
 
     render();
-
 }
 
 function onKeyDown(e) {
@@ -67,41 +64,48 @@ function onKeyDown(e) {
     
 
     switch(e.keyCode) {
-        /*case 49: // Tecla 1 - Cameral vista lateral/topo(?)
-
+        
+        case 49: // key 1 - top view camera
+            selected_camera = 0;
             break;
-        case 51: // Tecla 3 - Camera vista frontal
+        case 50: // key 2 - side view camera
+            selected_camera = 1;
+            break;
+        case 51: // key 3 - front view camera
+            selected_camera = 2;
+            break;
 
-            break;*/
-        case 52: // Tecla 4
+        case 52: // key 4
             scene.traverse(function (node){
                 if(node instanceof THREE.Mesh){
                     node.material.wireframe = !node.material.wireframe;
                 }
             });
             break;
-        /*case 38:   // Tecla Up - deslocar o robo
+
+        /*case 38:   // key Up - move robot up
 
             break;
-        case 40:  // Tecla Down
+        case 40:  // key Down - move robot down
 
             break;
-        case 37: // Tecla Left
+        case 37: // key Left - move robot left
 
             break;
-        case 39: // Tecla Right
+        case 39: // key Right - move robot right
             
             break;
-        case 65: // Tecla A e a - controlar angulo 1
+
+        case 65: // key A e a - controlar angulo 1
 
             break;
-        case 83: // Tecla S e s - controlar angulo 1
+        case 83: // key S e s - controlar angulo 1
 
             break;
-        case 87: // Tecla W e w - controlar angulo 2
+        case 87: // key W e w - controlar angulo 2
 
             break;
-        case 81: // Tecla Q e q - controlar angulo 2
+        case 81: // key Q e q - controlar angulo 2
 
             break;*/
     }
