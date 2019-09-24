@@ -1,12 +1,10 @@
- var width = 50, height = 50; /* atributed values for now */
+ var width = 80, height = 66; /* atributed values for now */
 
 function createCamera(x, y, z) { /* dont use this function directly */
     'use strict';
 
     var camera = new THREE.OrthographicCamera( -width/2, width/2, height/2, -height/2, 1, 1000 );
-    camera.position.x = x;
-    camera.position.y = y;
-    camera.position.z = z;
+    camera.position.set(x, y, z);
     camera.lookAt(scene.position);
 
     return camera;
