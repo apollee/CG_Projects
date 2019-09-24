@@ -27,5 +27,6 @@ function createTorus(obj, x, y, z) {
     var geometry = new THREE.TorusGeometry(5, 2, 16, 100);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
+    mesh.rotation.set( 0, Math.PI/2, 0);
     obj.add(mesh)
 }

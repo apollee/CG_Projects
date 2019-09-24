@@ -1,8 +1,7 @@
 /* global THREE */
 
 var scene, renderer;
-
-var cameras = [], selected_camera;
+var cameras = [], camera;
 
 function init() {
     'use strict';
@@ -22,10 +21,11 @@ function init() {
 
 function createScene() {
     'use strict';
+    
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(5));
 
-    createTarget(0, 0, 0)
+    createTarget(20, 0, 0)
 }
 
 function createAllCameras() {
@@ -33,13 +33,14 @@ function createAllCameras() {
     cameras.push( createSideViewCamera() );
     cameras.push( createFrontViewCamera() );
 
-    selected_camera = 0;
+    camera = cameras[0];
 }
 
 
 function render() {
     'use strict';
-    renderer.render(scene, cameras[selected_camera]);
+
+    renderer.render(scene, camera);
 }
 
 
@@ -55,32 +56,30 @@ function onResize() {
         camera.aspect = renderer.getSize().width / renderer.getSize().height;
         camera.updateProjectionMatrix();
     }
-
     render();
 }
 
 function onKeyDown(e) {
     'use strict';
     
-
     switch(e.keyCode) {
-        
+
         case 49: // key 1 - top view camera
-            selected_camera = 0;
+            camera = cameras[0];
             break;
         case 50: // key 2 - side view camera
-            selected_camera = 1;
+            camera = cameras[1];
             break;
         case 51: // key 3 - front view camera
-            selected_camera = 2;
+            camera = cameras[2];
             break;
 
         case 52: // key 4
-            scene.traverse(function (node){
-                if(node instanceof THREE.Mesh){
+            scene.traverse( function (node) {
+                if (node instanceof THREE.Mesh) {
                     node.material.wireframe = !node.material.wireframe;
                 }
-            });
+            } );
             break;
 
         /*case 38:   // key Up - move robot up
