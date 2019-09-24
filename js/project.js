@@ -1,17 +1,16 @@
-/*global THREE*/
+/* global THREE */
 
 var camera, scene, renderer;
-var material, geometry, mesh;
 
-function createCamera(){
+function createCamera() {
     'use strict';
 
-    var width = 50; /*atribuimos estes valores arbitrarios por agora*/
+    var width = 50; /* atributed values for now */
     var height = 50;
 
-    camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
-    camera.position.x = 50;
-    camera.position.y = 50;
+    camera = new THREE.OrthographicCamera( -width/2, width/2, height/2, -height/2, 1, 1000 );
+    camera.position.x = 35;
+    camera.position.y = 20;
     camera.position.z = 50;
     camera.lookAt(scene.position);
 }
@@ -20,9 +19,8 @@ function createScene(){
     'use strict';
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(10));
-    
-    createSupport(0, 0, 0);
-    createTorus(0, 20, 0);
+
+    createTarget(0, 0, 0)
 }
 
 

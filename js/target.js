@@ -1,28 +1,31 @@
-var scene;
-var material, geometry, mesh;
-
-function createSupport(x, y, z) {
+function createTarget(x, y, z) {
     'use strict';
 
-    var support = new THREE.Object3D();
-    material = new THREE.MeshBasicMaterial({color: '#1e2c3e', wireframe: true});
-    geometry = new THREE.CylinderGeometry(7, 7, 20, 50, 24);
-    mesh = new THREE.Mesh(geometry, material);
-    
-    support.add(mesh);
-    support.position.set(x, y, z);
-    scene.add(support);
+    var target = new THREE.Object3D();
+
+    createSupport(target, 0, 0, 0);
+    createTorus(target, 0, 17, 0);
+
+    target.position.set(x, y, z);
+    scene.add(target);
 }
 
-function createTorus(x, y, z) {
+function createSupport(obj, x, y, z) {
     'use strict';
 
-    var torus = new THREE.Object3D();
-    material = new THREE.MeshBasicMaterial({color: '#d40a47', wireframe: true});
-    geometry = new THREE.TorusGeometry(5, 2, 16, 100);
-    mesh = new THREE.Mesh(geometry, material);
+    var material = new THREE.MeshBasicMaterial({color: '#1e2c3e', wireframe: true});
+    var geometry = new THREE.CylinderGeometry(7, 7, 20, 50, 24);
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(x, y, z);
+    obj.add(mesh);
+}
 
-    torus.add(mesh);
-    torus.position.set(x, y, z);
-    scene.add(torus);
+function createTorus(obj, x, y, z) {
+    'use strict';
+
+    var material = new THREE.MeshBasicMaterial({color: '#d40a47', wireframe: true});
+    var geometry = new THREE.TorusGeometry(5, 2, 16, 100);
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(x, y, z);
+    obj.add(mesh)
 }
