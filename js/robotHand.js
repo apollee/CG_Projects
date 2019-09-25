@@ -1,4 +1,4 @@
-function createRobotHand(x, y, z) {
+function createRobotHand(obj, x, y, z) {
     'use strict';
 
     var hand = new THREE.Object3D();
@@ -8,7 +8,7 @@ function createRobotHand(x, y, z) {
     createFinger(hand, 2, 2, 0);
 
     hand.position.set(x, y, z);
-    scene.add(hand);
+    obj.add(hand);
 }
 
 function createFinger(obj, x, y, z) {

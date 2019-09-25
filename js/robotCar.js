@@ -1,4 +1,4 @@
-function createRobotCar(x, y, z) {
+function createRobotCar(obj, x, y, z) {
 	'use strict';
 
 	var car = new THREE.Object3D();
@@ -11,7 +11,8 @@ function createRobotCar(x, y, z) {
 	createCalote(car, 0, 1, 0)
 
 	car.position.set(x, y, z);
-	scene.add(car);
+	
+    obj.add(car);
 }
 
 function createBase(obj, x, y, z) {

@@ -1,4 +1,4 @@
-function createRobotArm(x, y, z) {
+function createRobotArm(obj, x, y, z) {
     'use strict';
 
     var arm = new THREE.Object3D();
@@ -7,7 +7,7 @@ function createRobotArm(x, y, z) {
     createHalfArm(arm, 0, 13, 0);
 
     arm.position.set(x, y, z);
-    scene.add(arm);
+    obj.add(arm);
 
 }
 
