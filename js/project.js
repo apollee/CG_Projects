@@ -27,6 +27,7 @@ function createScene() {
 
     createTarget(20, 0, 0);
     createHand(0, 0, 0);
+    createRobotCar(-20, 0, 0);
 }
 
 function createAllCameras() {
