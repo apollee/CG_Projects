@@ -17,7 +17,7 @@ function createRobotCar(x, y, z) {
 function createBase(obj, x, y, z) {
 	'use strict';
 
-	var material = new THREE.MeshBasicMaterial({color: '#aae856', wireframe: true});
+	var material = new THREE.MeshBasicMaterial({color: '#eb6841', wireframe: true});
 	var geometry = new THREE.BoxGeometry(30, 2, 10, 30, 2, 10);
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.set(x, y, z);
@@ -27,7 +27,7 @@ function createBase(obj, x, y, z) {
 function createCarWheels(obj, x, y, z) {
 	'use strict';
 
-	var material = new THREE.MeshBasicMaterial({color: '#26e89a', wireframe: true});
+	var material = new THREE.MeshBasicMaterial({color: '#1e2c3e', wireframe: true});
 	var geometry = new THREE.SphereGeometry(2, 8, 8);
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.set(x, y, z);
@@ -37,7 +37,7 @@ function createCarWheels(obj, x, y, z) {
 function createCalote(obj, x, y, z) {
 	'use strict';
 
-	var material = new THREE.MeshBasicMaterial({color: '#2651a6', wireframe: true});
+	var material = new THREE.MeshBasicMaterial({color: '#00a0b0', wireframe: true});
 	var geometry = new THREE.SphereGeometry(3, 8, 8, 0, Math.PI, 0);
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.set(x, y, z);
