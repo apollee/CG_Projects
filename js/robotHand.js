@@ -1,9 +1,9 @@
-function createHand(x, y, z) {
+function createRobotHand(x, y, z) {
     'use strict';
 
     var hand = new THREE.Object3D();
 
-    createBaseHand(hand, 0, 0, 0);
+    createHandBase(hand, 0, 0, 0);
     createFinger(hand, -2, 2, 0);
     createFinger(hand, 2, 2, 0);
 
@@ -22,11 +22,11 @@ function createFinger(obj, x, y, z) {
     obj.add(mesh);
 }
 
-function createBaseHand(obj, x, y, z) {
+function createHandBase(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#eb6841', wireframe: true});
-    var geometry = new THREE.BoxGeometry(8, 1, 4)
+    var geometry = new THREE.BoxGeometry(8, 1, 4, 5, 5, 5)
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);

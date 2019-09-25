@@ -26,8 +26,9 @@ function createScene() {
     scene.add(new THREE.AxisHelper(5));
 
     createTarget(20, 0, 0);
-    createRobotCar(-20, 0, 0);
-    createHand(0, 10, 0);
+    createRobotCar(-20, -10, 0);
+    createRobotArm(-20, -1.5, 0);
+    createRobotHand(-20, 20, 0);
 }
 
 function createAllCameras() {

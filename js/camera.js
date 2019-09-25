@@ -1,4 +1,4 @@
- var width = 80, height = 66; /* atributed values for now */
+ var width = 110, height = 60; /* atributed values for now */
 
 function createCamera(x, y, z) { /* dont use this function directly */
     'use strict';
