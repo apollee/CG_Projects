@@ -1,7 +1,9 @@
+var robot
+
 function createRobot(x, y, z) {
     'use strict'
 
-    var robot = new THREE.Object3D();
+    robot = new THREE.Object3D();
 
     createRobotCar(robot, -20, -10, 0);
     createRobotArm(robot, -20, -1.5, 0);
@@ -9,4 +11,5 @@ function createRobot(x, y, z) {
 
     robot.position.set(x, y, z);
     scene.add(robot);
+
 }

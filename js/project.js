@@ -83,20 +83,20 @@ function onKeyDown(e) {
             } );
             break;
 
-        /*case 38:   // key Up - move robot up
-
+        case 38:   // key Up - move robot up
+            robot.position.z -= 0.5;
             break;
         case 40:  // key Down - move robot down
-
+            robot.position.z += 0.5;
             break;
         case 37: // key Left - move robot left
-
+            robot.position.x -= 0.5;
             break;
         case 39: // key Right - move robot right
-            
+            robot.position.x += 0.5
             break;
 
-        case 65: // key A e a - controlar angulo 1
+        /*case 65: // key A e a - controlar angulo 1
 
             break;
         case 83: // key S e s - controlar angulo 1
