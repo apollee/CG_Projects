@@ -25,7 +25,8 @@ function createScene() {
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(5));
 
-    createTarget(20, 0, 0)
+    createTarget(20, 0, 0);
+    createHand(0, 0, 0);
 }
 
 function createAllCameras() {
