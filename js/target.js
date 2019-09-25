@@ -14,7 +14,7 @@ function createSupport(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#1e2c3e', wireframe: true});
-    var geometry = new THREE.CylinderGeometry(4, 4, 30, 30, 24);
+    var geometry = new THREE.CylinderGeometry(4, 4, 30, 20, 30);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);
@@ -24,7 +24,7 @@ function createTorus(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#d40a47', wireframe: true});
-    var geometry = new THREE.TorusGeometry(5, 2, 16, 100);
+    var geometry = new THREE.TorusGeometry(5, 2, 16, 32);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     mesh.rotation.set( 0, Math.PI/2, 0);
