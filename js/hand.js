@@ -3,9 +3,9 @@ function createHand(x, y, z) {
 
     var hand = new THREE.Object3D();
 
-    createBaseHand(hand, 0, 20, 0);
-    createFinger(hand, 2, 22, 0);
-    createFinger(hand, -2, 22, 0);
+    createBaseHand(hand, 0, 0, 0);
+    createFinger(hand, -2, 2, 0);
+    createFinger(hand, 2, 2, 0);
 
     hand.position.set(x, y, z);
     scene.add(hand);
