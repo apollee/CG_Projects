@@ -39,7 +39,7 @@ function createCalote(obj, x, y, z) {
 	'use strict';
 
 	var material = new THREE.MeshBasicMaterial({color: '#00a0b0', wireframe: true});
-	var geometry = new THREE.SphereGeometry(3, 8, 8, 0, Math.PI, 0);
+	var geometry = new THREE.SphereGeometry(4, 10, 10, 0, Math.PI, 0);
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.set(x, y, z);
 	mesh.rotation.set(-(Math.PI/2), 0, Math.PI/2);
