@@ -1,18 +1,18 @@
-function createRobotHalfArm(obj, x, y, z) {
+function createRobotLowerArm(obj, x, y, z) {
     'use strict';
 
-    var halfArm = new THREE.Group();
+    var lowerArm = new THREE.Group();
 
-    createArmJoint(halfArm, 0, 0, 0); // halfArm referencial origin
-    createArmBone(halfArm, 0, -6.5, 0); 
+    createElbow(lowerArm, 0, 0, 0); // lowerArm referencial origin
+    createLowerArmBone(lowerArm, 0, 6.5, 0); 
 
-    halfArm.position.set(x, y, z);
-    obj.add( halfArm );
+    lowerArm.position.set(x, y, z);
+    obj.add( lowerArm );
 
-    return halfArm;
+    return lowerArm;
 }
 
-function createArmJoint(obj, x, y, z) {
+function createElbow(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#00a0b0', wireframe: true});
@@ -22,7 +22,7 @@ function createArmJoint(obj, x, y, z) {
     obj.add(mesh);
 }
 
-function createArmBone(obj, x, y, z) {
+function createLowerArmBone(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#edc951', wireframe: true});

@@ -3,12 +3,12 @@ function createRobotCar(obj, x, y, z) {
 
 	var car = new THREE.Group();
 
-	createBase(car, 0, -1, 0);
+	createBase(car, 0, -1, 0); // car referencial origin
 	createCarWheels(car,  12, -3.5,  3);
 	createCarWheels(car, -12, -3.5,  3);
 	createCarWheels(car,  12, -3.5, -3);
 	createCarWheels(car, -12, -3.5, -3);
-	createCalote(car, 0, 0, 0); // car referencial origin
+    createShoulder(car, 0, 0, 0);
 
 	car.position.set(x, y, z);
 	
@@ -37,14 +37,13 @@ function createCarWheels(obj, x, y, z) {
 	obj.add(mesh);
 }
 
-function createCalote(obj, x, y, z) {
-	'use strict';
+function createShoulder(obj, x, y, z) {
+    'use strict';
 
-	var material = new THREE.MeshBasicMaterial({color: '#00a0b0', wireframe: true});
-	var geometry = new THREE.SphereGeometry(4, 10, 10, 0, Math.PI, 0);
-	var mesh = new THREE.Mesh(geometry, material);
-	mesh.position.set(x, y, z);
-	mesh.rotation.set(-(Math.PI/2), 0, Math.PI/2);
-	obj.add(mesh);
-
+    var material = new THREE.MeshBasicMaterial({color: '#00a0b0', wireframe: true});
+    var geometry = new THREE.SphereGeometry(4, 10, 10, 0, Math.PI, 0);
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(x, y, z);
+    mesh.rotation.set(-(Math.PI/2), 0, Math.PI/2);
+    obj.add(mesh);
 }
