@@ -2,6 +2,7 @@
 
 var scene, renderer;
 var cameras = [], camera;
+var robotParts = {};
 
 function init() {
     'use strict';
@@ -25,8 +26,11 @@ function createScene() {
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(5));
 
-    createTarget(20, 0, 0);
-    createRobot(-10, 0, 0);
+    createTarget(20, 15, 0);
+
+    createRobot(robotParts, -20, 0, 0);
+    
+    scene.add( robotParts["robot"] );
 }
 
 function createAllCameras() {
@@ -84,19 +88,19 @@ function onKeyDown(e) {
             break;
 
         case 38:   // key Up - move robot up
-            robot.position.z -= 0.5;
+            robotParts["robot"].position.z -= 0.5;
             break;
         case 40:  // key Down - move robot down
-            robot.position.z += 0.5;
+            robotParts["robot"].position.z += 0.5;
             break;
         case 37: // key Left - move robot left
-            robot.position.x -= 0.5;
+            robotParts["robot"].position.x -= 0.5;
             break;
         case 39: // key Right - move robot right
-            robot.position.x += 0.5
+            robotParts["robot"].position.x += 0.5
             break;
 
-        /*case 65: // key A e a - controlar angulo 1
+        case 65: // key A e a - controlar angulo 1
 
             break;
         case 83: // key S e s - controlar angulo 1
@@ -107,7 +111,7 @@ function onKeyDown(e) {
             break;
         case 81: // key Q e q - controlar angulo 2
 
-            break;*/
+            break;
     }
 
     render();

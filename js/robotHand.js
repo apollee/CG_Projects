@@ -1,14 +1,16 @@
 function createRobotHand(obj, x, y, z) {
     'use strict';
 
-    var hand = new THREE.Object3D();
+    var hand = new THREE.Group();
 
-    createHandBase(hand, 0, 0, 0);
+    createHandBase(hand, 0, 0, 0); // hand referencial origin
     createFinger(hand, -2, 2, 0);
     createFinger(hand, 2, 2, 0);
 
     hand.position.set(x, y, z);
     obj.add(hand);
+
+    return hand;
 }
 
 function createFinger(obj, x, y, z) {

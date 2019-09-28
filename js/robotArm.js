@@ -1,20 +1,15 @@
-function createRobotArm(obj, x, y, z) {
+function createRobotHalfArm(obj, x, y, z) {
     'use strict';
 
-    var arm = new THREE.Object3D();
+    var halfArm = new THREE.Group();
 
-    createHalfArm(arm, 0, 0, 0);
-    createHalfArm(arm, 0, 13, 0);
+    createArmJoint(halfArm, 0, 0, 0); // halfArm referencial origin
+    createArmBone(halfArm, 0, -6.5, 0); 
 
-    arm.position.set(x, y, z);
-    obj.add(arm);
+    halfArm.position.set(x, y, z);
+    obj.add( halfArm );
 
-}
-
-function createHalfArm(obj, x, y, z) {
-
-    createArmJoint(obj, x, y+6.5, z);
-    createArmBone(obj, x, y, z);
+    return halfArm;
 }
 
 function createArmJoint(obj, x, y, z) {

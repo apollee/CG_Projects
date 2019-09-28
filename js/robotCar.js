@@ -1,18 +1,20 @@
 function createRobotCar(obj, x, y, z) {
 	'use strict';
 
-	var car = new THREE.Object3D();
+	var car = new THREE.Group();
 
-	createBase(car, 0, 0, 0);
-	createCarWheels(car, 13, -3, 3);
-	createCarWheels(car, -13, -3,3);
-	createCarWheels(car, 13, -3,-3);
-	createCarWheels(car, -13, -3,-3);
-	createCalote(car, 0, 1, 0)
+	createBase(car, 0, -1, 0);
+	createCarWheels(car,  12, -3.5,  3);
+	createCarWheels(car, -12, -3.5,  3);
+	createCarWheels(car,  12, -3.5, -3);
+	createCarWheels(car, -12, -3.5, -3);
+	createCalote(car, 0, 0, 0); // car referencial origin
 
 	car.position.set(x, y, z);
 	
     obj.add(car);
+
+    return car;
 }
 
 function createBase(obj, x, y, z) {
