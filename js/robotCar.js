@@ -30,7 +30,7 @@ function createBase(obj, x, y, z) {
 function createCarWheels(obj, x, y, z) {
 	'use strict';
 
-	var material = new THREE.MeshBasicMaterial({color: '#1e2c3e', wireframe: true});
+	var material = new THREE.MeshBasicMaterial({color: '#aaaaaa', wireframe: true});
 	var geometry = new THREE.SphereGeometry(2, 8, 8);
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.set(x, y, z);

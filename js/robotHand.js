@@ -28,7 +28,7 @@ function createFinger(obj, x, y, z) {
 function createHandBase(obj, x, y, z) {
     'use strict';
 
-    var material = new THREE.MeshBasicMaterial({color: '#eb6841', wireframe: true});
+    var material = new THREE.MeshBasicMaterial({color: '#578e67', wireframe: true});
     var geometry = new THREE.BoxGeometry(8, 1, 4, 8, 1, 4)
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
