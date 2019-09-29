@@ -50,11 +50,6 @@ function render() {
     renderer.render(scene, camera);
 }
 
-
-function animate() {
-
-}
-
 function onResize() {
     'use strict';
 

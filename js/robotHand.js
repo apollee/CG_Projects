@@ -5,8 +5,8 @@ function createRobotHand(obj, x, y, z) {
 
     createWrist(hand, 0, 0, 0); // hand referencial origin
     createHandBase(hand, 0, 2.5, 0);
-    createFinger(hand, -2, 4, 0);
-    createFinger(hand, 2, 4, 0);
+    createFinger(hand, -3, 4, 0);
+    createFinger(hand, 3, 4, 0);
 
     hand.position.set(x, y, z);
     obj.add(hand);
@@ -29,7 +29,7 @@ function createHandBase(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#578e67', wireframe: true});
-    var geometry = new THREE.BoxGeometry(8, 1, 4, 8, 1, 4)
+    var geometry = new THREE.BoxGeometry(9, 1, 4, 8, 1, 4)
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);

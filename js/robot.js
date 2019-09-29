@@ -8,8 +8,8 @@ function createRobot(robPar, x, y, z) {
 
     var car = createRobotCar(robot, 0, 5.5, 0);
     var upperArm = createRobotUpperArm(car, 0, 1, 0);
-    var lowerArm = createRobotLowerArm(upperArm, 0, 13.5, 0);
-    var hand = createRobotHand(lowerArm, 0, 13, 0);
+    var lowerArm = createRobotLowerArm(upperArm, 0, 19.5, 0);
+    var hand = createRobotHand(lowerArm, 0, 19, 0);
 
     robot.position.set(x, y, z);
 
