@@ -16,6 +16,7 @@ function init() {
     render();
 
     window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keyup", onKeyup);
     window.addEventListener("resize", onResize);
 }
 
@@ -29,8 +30,8 @@ function createScene() {
     createRobot(robotParts, -20, 0, 0);
 
     bendElbow( -Math.PI/2 );
-    bendShoulder( Math.PI/4 );
-    spinArm( Math.PI/8 );
+    //bendShoulder( Math.PI/4 );
+    //spinArm( Math.PI/8 );
     
     scene.add( robotParts["robot"] );
 }
@@ -85,16 +86,16 @@ function onKeyDown(e) {
             break;
 
         case 38:   // key Up - move robot up
-            robotParts["robot"].position.z -= 0.5;
+            upMovement();
             break;
         case 40:  // key Down - move robot down
-            robotParts["robot"].position.z += 0.5;
+            downMovement();
             break;
         case 37: // key Left - move robot left
-            robotParts["robot"].position.x -= 0.5;
+            leftMovement();
             break;
         case 39: // key Right - move robot right
-            robotParts["robot"].position.x += 0.5
+            rightMovement();
             break;
 
         case 65: // key A e a - controlar angulo 1
@@ -112,4 +113,23 @@ function onKeyDown(e) {
     }
 
     render();
+}
+
+function onKeyup(e) {
+    'use strict'
+
+    switch(e.keyCode) {
+        case 38:   // key Up - move robot up
+            stopUpMovement();
+            break;
+        case 40:  // key Down - move robot down
+            stopDownMovement();
+            break;
+        case 37: // key Left - move robot left
+            stopLeftMovement();
+            break;
+        case 39: // key Right - move robot right
+            stopRightMovement();
+            break;
+    }
 }

@@ -1,5 +1,6 @@
 
 var robotParts = {};
+var vector = new THREE.Vector3(0, 0, 0);
 
 function createRobot(robPar, x, y, z) {
     'use strict'
@@ -30,4 +31,40 @@ function bendShoulder (deg) {
 
 function bendElbow (deg) {
     robotParts["lowerArm"].rotateZ(deg);
+}
+
+function rightMovement () {
+    vector.setComponent(2, Math.PI/16);
+    robotParts["robot"].translateOnAxis(vector, 2);
+}
+
+function leftMovement () {
+    vector.setComponent(2, -Math.PI/16);
+    robotParts["robot"].translateOnAxis(vector, 2);
+}
+
+function upMovement () {
+    vector.setComponent(0, Math.PI/16);
+    robotParts["robot"].translateOnAxis(vector, 2);
+}
+
+function downMovement () {
+    vector.setComponent(0, -Math.PI/16);
+    robotParts["robot"].translateOnAxis(vector, 2);
+}
+
+function stopUpMovement () {
+    vector.setComponent(2, 0);
+}
+
+function stopDownMovement() {
+    vector.setComponent(2, 0);
+}
+
+function stopLeftMovement() {
+    vector.setComponent(0, 0);
+}
+
+function stopRightMovement() {
+    vector.setComponent(0, 0);
 }
