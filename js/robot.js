@@ -54,17 +54,21 @@ function downMovement () {
 }
 
 function stopUpMovement () {
-    vector.setComponent(2, 0);
+    vector.setComponent(0, 0);
+    robotParts["robot"].translateOnAxis(vector, 0);
 }
 
 function stopDownMovement() {
-    vector.setComponent(2, 0);
+    vector.setComponent(0, 0);
+    robotParts["robot"].translateOnAxis(vector, 0);
 }
 
 function stopLeftMovement() {
-    vector.setComponent(0, 0);
+    vector.setComponent(2, 0);
+    robotParts["robot"].translateOnAxis(vector, 0);
 }
 
 function stopRightMovement() {
-    vector.setComponent(0, 0);
+    vector.setComponent(2, 0);
+    robotParts["robot"].translateOnAxis(vector, 0);
 }

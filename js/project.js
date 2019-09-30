@@ -3,6 +3,18 @@
 var scene, renderer;
 var cameras = [], camera;
 
+var stopUP = false;
+var stopDOWN = false;
+
+var controlUP = false;
+var controlDOWN = false;
+
+var stopLEFT = false;
+var stopRIGHT = false;
+
+var controlLEFT = false;
+var controlRIGHT = false;
+
 function init() {
     'use strict';
 
