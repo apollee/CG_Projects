@@ -1,8 +1,7 @@
-
 var robotParts = {};
 var vector = new THREE.Vector3(0, 0, 0);
 
-function createRobot(robPar, x, y, z) {
+function createRobot(x, y, z) {
     'use strict'
 
     var robot = new THREE.Object3D();
@@ -14,11 +13,11 @@ function createRobot(robPar, x, y, z) {
 
     robot.position.set(x, y, z);
 
-    robPar["robot"] = robot;
-    robPar["car"] = car;
-    robPar["upperArm"] = upperArm;
-    robPar["lowerArm"] = lowerArm;
-    robPar["hand"] = hand;
+    robotParts["robot"] = robot;
+    robotParts["car"] = car;
+    robotParts["upperArm"] = upperArm;
+    robotParts["lowerArm"] = lowerArm;
+    robotParts["hand"] = hand;
 }
 
 function spinArm (deg) {

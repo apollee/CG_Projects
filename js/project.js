@@ -1,19 +1,7 @@
 /* global THREE */
 
 var scene, renderer;
-var cameras = [], camera;
-
-var stopUP = false;
-var stopDOWN = false;
-
-var controlUP = false;
-var controlDOWN = false;
-
-var stopLEFT = false;
-var stopRIGHT = false;
-
-var controlLEFT = false;
-var controlRIGHT = false;
+var robCamera;
 
 function init() {
     'use strict';
@@ -24,7 +12,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     createScene();
-    createAllCameras();
+    createCamera();
     render();
 
     window.addEventListener("keydown", onKeyDown);
@@ -39,7 +27,7 @@ function createScene() {
     scene.add(new THREE.AxisHelper(5));
 
     createTarget(20, 15, 0);
-    createRobot(robotParts, -20, 0, 0);
+    createRobot(-20, 0, 0);
 
     bendElbow( -Math.PI/2 );
     //bendShoulder( Math.PI/4 );
@@ -48,28 +36,27 @@ function createScene() {
     scene.add( robotParts["robot"] );
 }
 
-function createAllCameras() {
-    cameras.push( createTopViewCamera() );
-    cameras.push( createSideViewCamera() );
-    cameras.push( createFrontViewCamera() );
-
-    camera = cameras[2];
+function createCamera() {
+    robCamera = new robotCamera();
 }
 
 
 function render() {
     'use strict';
 
-    renderer.render(scene, camera);
+    renderer.render(scene, robCamera.getCamera());
+}
+
+function animate() {
+
 }
 
 function onResize() {
     'use strict';
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    if(window.innerHeight > 0 && window.innerWidth > 0) {
-        camera.aspect = renderer.getSize().width / renderer.getSize().height;
-        camera.updateProjectionMatrix();
+    if ( window.innerHeight > 0 && window.innerWidth > 0 ) {
+        robCamera.resize();
     }
     render();
 }
@@ -80,13 +67,13 @@ function onKeyDown(e) {
     switch(e.keyCode) {
 
         case 49: // key 1 - top view camera
-            camera = cameras[0];
+            robCamera.topView();
             break;
         case 50: // key 2 - side view camera
-            camera = cameras[1];
+            robCamera.sideView();
             break;
         case 51: // key 3 - front view camera
-            camera = cameras[2];
+            robCamera.frontView();
             break;
 
         case 52: // key 4
