@@ -99,16 +99,16 @@ function onKeyDown(e) {
             break;
 
         case 65: // key A e a - controlar angulo 1
-            spinArm( Math.PI/16 );
+            spinArm( Math.PI/32 );
             break;
         case 83: // key S e s - controlar angulo 1
-            spinArm( -Math.PI/16 );
+            spinArm( -Math.PI/32 );
             break;
         case 87: // key W e w - controlar angulo 2
-            bendShoulder( -Math.PI/16 );
+            bendShoulder( -Math.PI/64 );
             break;
         case 81: // key Q e q - controlar angulo 2
-            bendShoulder( Math.PI/16 );
+            bendShoulder( Math.PI/64 );
             break;
     }
 

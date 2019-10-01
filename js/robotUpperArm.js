@@ -3,7 +3,7 @@ function createRobotUpperArm(obj, x, y, z) {
 
     var upperArm = new THREE.Group();
 
-    createUpperArmBone(upperArm, 0, 10, 0); 
+    createUpperArmBone(upperArm, 0, 13.5, 0); 
 
     upperArm.position.set(x, y, z);
     obj.add( upperArm );
