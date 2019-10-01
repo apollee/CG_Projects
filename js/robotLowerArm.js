@@ -4,7 +4,7 @@ function createRobotLowerArm(obj, x, y, z) {
     var lowerArm = new THREE.Group();
 
     createElbow(lowerArm, 0, 0, 0); // lowerArm referencial origin
-    createLowerArmBone(lowerArm, 0, 9.5, 0); 
+    createLowerArmBone(lowerArm, 0, 12, 0); 
 
     lowerArm.position.set(x, y, z);
     obj.add( lowerArm );
@@ -26,7 +26,7 @@ function createLowerArmBone(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#edc951', wireframe: true});
-    var geometry = new THREE.BoxGeometry(2, 15, 2, 2, 15, 2);
+    var geometry = new THREE.BoxGeometry(2, 20, 2, 2, 20, 2);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh)

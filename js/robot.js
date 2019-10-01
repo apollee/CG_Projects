@@ -7,9 +7,9 @@ function createRobot(x, y, z) {
     var robot = new THREE.Object3D();
 
     var car = createRobotCar(robot, 0, 5.5, 0);
-    var upperArm = createRobotUpperArm(car, 0, 1, 0);
-    var lowerArm = createRobotLowerArm(upperArm, 0, 19.5, 0);
-    var hand = createRobotHand(lowerArm, 0, 19, 0);
+    var upperArm = createRobotUpperArm(car, 0, 3.5, 0);
+    var lowerArm = createRobotLowerArm(upperArm, 0, 22, 0);
+    var hand = createRobotHand(lowerArm, 0, 24, 0);
 
     robot.position.set(x, y, z);
 

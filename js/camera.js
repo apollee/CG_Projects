@@ -1,16 +1,18 @@
 class robotCamera
 {
     constructor() {
-        var ws = this.normalizeWindow();
-
-        this.camera = new THREE.OrthographicCamera(ws[0], ws[1], ws[2], ws[3], 1, 1000 );
-        
         this.n = 1;
+        var ws = this.normalizeWindow();
+        this.camera = new THREE.OrthographicCamera(ws[0], ws[1], ws[2], ws[3], 1, 2000 );
         this.topView();
+        this.resize();
     }
 
     topView() {
         this.n = 1;
+
+        this.resize();
+
         this.camera.position.set(0, window.innerHeight/2, 0);
         this.lookAt();
     }
@@ -18,7 +20,8 @@ class robotCamera
     sideView() {
         this.n = 2;
         var width = window.innerWidth;
-        var height = window.innerHeight;
+
+        this.resize();
 
         this.camera.position.set( width/2, 0, 0);
         this.lookAt()
@@ -26,8 +29,8 @@ class robotCamera
 
     frontView() {
         this.n = 3;
-        var width = window.innerWidth;
-        var height = window.innerHeight;
+
+        this.resize();
         
         this.camera.position.set(0, 0, 500);
         this.lookAt();
@@ -40,14 +43,14 @@ class robotCamera
     }
 
     resize() {
-/*
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        // update the camera
         var ws = this.normalizeWindow();
         this.camera.left = ws[0];
         this.camera.right = ws[1];
-        this.camera.up = ws[2];
+        this.camera.top = ws[2];
         this.camera.bottom = ws[3];
-*/
-        this.update();
+        this.camera.updateProjectionMatrix();
     }
 
     lookAt() {
@@ -55,25 +58,11 @@ class robotCamera
     }
 
     normalizeWindow() {
-        var width = window.innerWidth;
-        var height = window.innerHeight;
-/*
-        if ( width = 16/9*height ) return [-width/10, width/10, height/10, -height/10];
-
-        else if ( width > 16/9*height ) {
-            var z = width - 16/9*height;
-
-            return [-width/10 - z/2, width/10 + z/2, height/10, -height/10];
-        }
-
-        else if ( width < 16/9*height ) {
-            var z = height - 9/16*width;
-
-            return [-width/10, width/10, height/10 + z/2, -height/10 - z/2];
-        }
-*/      width = 160;
-        height = 90;
-        return [-width/2, width/2, height/2, -height/2];
+        var width = window.innerWidth / aspectratio;
+        var height = window.innerHeight / aspectratio;
+        if ( this.n != 1 )
+             return [-width, width, height * 1.6, -height * .4];
+        else return [-width, width, height, -height];
     }
 
     getCamera() {

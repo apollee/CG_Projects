@@ -3,11 +3,14 @@
 var scene, renderer;
 var robCamera;
 
+var aspectratio;
 function init() {
     'use strict';
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    aspectratio = window.innerWidth/ window.innerHeight * 15;
 
     document.body.appendChild(renderer.domElement);
 
@@ -54,10 +57,8 @@ function animate() {
 function onResize() {
     'use strict';
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    if ( window.innerHeight > 0 && window.innerWidth > 0 ) {
-        robCamera.resize();
-    }
+    robCamera.resize();
+
     render();
 }
 
