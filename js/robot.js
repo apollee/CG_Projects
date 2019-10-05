@@ -1,73 +1,99 @@
-var robotParts = {};
-var vector = new THREE.Vector3(0, 0, 0);
+class Robot extends THREE.Object3D {
+    constructor(x, y, z) {
+        super();
 
-function createRobot(x, y, z) {
-    'use strict'
+        this.robotParts = {};
+        this.vector = new THREE.Vector3(0, 0, 0);
 
-    var robot = new THREE.Object3D();
+        var car = createRobotCar(this, 0, 5.5, 0);
+        var upperArm = createRobotUpperArm(car, 0, 0, 0);
+        var lowerArm = createRobotLowerArm(upperArm, 0, 25.5, 0);
+        var hand = createRobotHand(lowerArm, 0, 24, 0);
+        
+        this.position.set(x, y, z);
 
-    var car = createRobotCar(robot, 0, 5.5, 0);
-    var upperArm = createRobotUpperArm(car, 0, 0, 0);
-    var lowerArm = createRobotLowerArm(upperArm, 0, 25.5, 0);
-    var hand = createRobotHand(lowerArm, 0, 24, 0);
+        this.robotParts["car"] = car;
+        this.robotParts["upperArm"] = upperArm;
+        this.robotParts["lowerArm"] = lowerArm;
+        this.robotParts["hand"] = hand;
 
-    robot.position.set(x, y, z);
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
+        this.shoulderPos = false;
+        this.shoulderNeg = false;
+        this.elbowPos = false;
+        this.elbowNeg = false;
 
-    robotParts["robot"] = robot;
-    robotParts["car"] = car;
-    robotParts["upperArm"] = upperArm;
-    robotParts["lowerArm"] = lowerArm;
-    robotParts["hand"] = hand;
-}
+        this.lastTime = new Date();
+    }
 
-function spinArm (deg) {
-    robotParts["upperArm"].rotateY(deg);
-}
+    spinArm (deg) {
+        this.robotParts["upperArm"].rotateY(deg);
+    }
 
-function bendShoulder (deg) {
-    robotParts["upperArm"].rotateZ(deg);
-}
+    bendShoulder (deg) {
+        this.robotParts["upperArm"].rotateZ(deg);
+    }
 
-function bendElbow (deg) {
-    robotParts["lowerArm"].rotateZ(deg);
-}
+    bendElbow (deg) {
+        this.robotParts["lowerArm"].rotateZ(deg);
+    }
 
-function rightMovement () {
-    vector.setComponent(2, Math.PI/16);
-    robotParts["robot"].translateOnAxis(vector, 2);
-}
+    rightMovement () {
+        this.right = true;
+    }
 
-function leftMovement () {
-    vector.setComponent(2, -Math.PI/16);
-    robotParts["robot"].translateOnAxis(vector, 2);
-}
+    stopRightMovement() {
+        this.right = false;
+    }
 
-function upMovement () {
-    vector.setComponent(0, Math.PI/16);
-    robotParts["robot"].translateOnAxis(vector, 2);
-}
+    leftMovement () {
+        this.left = true;
+    }
 
-function downMovement () {
-    vector.setComponent(0, -Math.PI/16);
-    robotParts["robot"].translateOnAxis(vector, 2);
-}
+    stopLeftMovement() {
+        this.left = false;
+    }
 
-function stopUpMovement () {
-    vector.setComponent(0, 0);
-    robotParts["robot"].translateOnAxis(vector, 0);
-}
+    upMovement () {
+        this.up = true;
+    }
 
-function stopDownMovement() {
-    vector.setComponent(0, 0);
-    robotParts["robot"].translateOnAxis(vector, 0);
-}
+    stopUpMovement () {
+        this.up = false;
+    }
 
-function stopLeftMovement() {
-    vector.setComponent(2, 0);
-    robotParts["robot"].translateOnAxis(vector, 0);
-}
+    downMovement () {
+        this.down = true;
+    }
 
-function stopRightMovement() {
-    vector.setComponent(2, 0);
-    robotParts["robot"].translateOnAxis(vector, 0);
+    stopDownMovement() {
+        this.down = false;
+    }
+
+    zValue() {
+        if ( (this.left && this.right) || !(this.left || this.right) ) return 0;
+        else if ( this.left ) return -Math.PI/16;
+        else if ( this.right ) return Math.PI/16;
+    }
+
+
+    xValue() {
+        if ( (this.up && this.down) || !(this.up || this.down) ) return 0;
+        else if ( this.up ) return Math.PI/16;
+        else if ( this.down ) return -Math.PI/16;
+    }
+
+    setVector() {
+        this.vector.set( this.xValue(), 0, this.zValue());
+    }
+
+    update() {
+        var time = new Date();
+        this.setVector()
+        this.translateOnAxis(this.vector, (time.getTime() - this.lastTime.getTime())/10 );
+        this.lastTime = time;
+    }
 }

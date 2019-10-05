@@ -2,6 +2,7 @@
 
 var scene, renderer;
 var camera;
+var robot;
 
 var aspectratio;
 function init() {
@@ -30,13 +31,11 @@ function createScene() {
     scene.add(new THREE.AxisHelper(5));
 
     createTarget(20, 15, 0);
-    createRobot(-20, 0, 0);
+    robot = new Robot(-20, 0, 0);
 
-    bendElbow( -Math.PI/2 );
-    //bendShoulder( Math.PI/4 );
-    //spinArm( Math.PI/8 );
+    robot.bendElbow( -Math.PI/2 );
     
-    scene.add( robotParts["robot"] );
+    scene.add( robot );
 }
 
 function createCamera() {
@@ -51,15 +50,14 @@ function render() {
 }
 
 function animate() {
-
+    robot.update();
+    render();
+    requestAnimationFrame(animate);
 }
 
 function onResize() {
     'use strict';
-
     camera.resize();
-
-    render();
 }
 
 function onKeyDown(e) {
@@ -86,33 +84,31 @@ function onKeyDown(e) {
             break;
 
         case 38:   // key Up - move robot up
-            upMovement();
+            robot.upMovement();
             break;
         case 40:  // key Down - move robot down
-            downMovement();
+            robot.downMovement();
             break;
         case 37: // key Left - move robot left
-            leftMovement();
+            robot.leftMovement();
             break;
         case 39: // key Right - move robot right
-            rightMovement();
+            robot.rightMovement();
             break;
 
         case 65: // key A e a - controlar angulo 1
-            spinArm( Math.PI/32 );
+            robot.spinArm( Math.PI/32 );
             break;
         case 83: // key S e s - controlar angulo 1
-            spinArm( -Math.PI/32 );
+            robot.spinArm( -Math.PI/32 );
             break;
         case 87: // key W e w - controlar angulo 2
-            bendShoulder( -Math.PI/64 );
+            robot.bendShoulder( -Math.PI/64 );
             break;
         case 81: // key Q e q - controlar angulo 2
-            bendShoulder( Math.PI/64 );
+            robot.bendShoulder( Math.PI/64 );
             break;
     }
-
-    render();
 }
 
 function onKeyup(e) {
@@ -120,16 +116,16 @@ function onKeyup(e) {
 
     switch(e.keyCode) {
         case 38:   // key Up - move robot up
-            stopUpMovement();
+            robot.stopUpMovement();
             break;
         case 40:  // key Down - move robot down
-            stopDownMovement();
+            robot.stopDownMovement();
             break;
         case 37: // key Left - move robot left
-            stopLeftMovement();
+            robot.stopLeftMovement();
             break;
         case 39: // key Right - move robot right
-            stopRightMovement();
+            robot.stopRightMovement();
             break;
     }
 }
