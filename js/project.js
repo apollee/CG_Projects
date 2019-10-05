@@ -97,16 +97,16 @@ function onKeyDown(e) {
             break;
 
         case 65: // key A e a - controlar angulo 1
-            robot.spinArm( Math.PI/32 );
+            robot.posSpinArm();
             break;
         case 83: // key S e s - controlar angulo 1
-            robot.spinArm( -Math.PI/32 );
+            robot.negSpinArm();
             break;
         case 87: // key W e w - controlar angulo 2
-            robot.bendShoulder( -Math.PI/64 );
+            robot.posBendShoulder();
             break;
         case 81: // key Q e q - controlar angulo 2
-            robot.bendShoulder( Math.PI/64 );
+            robot.negBendShoulder();
             break;
     }
 }
@@ -126,6 +126,19 @@ function onKeyup(e) {
             break;
         case 39: // key Right - move robot right
             robot.stopRightMovement();
+            break;
+
+        case 65: // key A e a - controlar angulo 1
+            robot.stopPosSpinArm();
+            break;
+        case 83: // key S e s - controlar angulo 1
+            robot.stopNegSpinArm();
+            break;
+        case 87: // key W e w - controlar angulo 2
+            robot.stopPosBendShoulder();
+            break;
+        case 81: // key Q e q - controlar angulo 2
+            robot.stopNegBendShoulder();
             break;
     }
 }

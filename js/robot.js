@@ -21,24 +21,51 @@ class Robot extends THREE.Object3D {
         this.right = false;
         this.up = false;
         this.down = false;
+
         this.shoulderPos = false;
         this.shoulderNeg = false;
-        this.elbowPos = false;
-        this.elbowNeg = false;
+        this.armPos = false;
+        this.armNeg = false;
 
         this.lastTime = new Date();
+        this.currentTime = new Date();
     }
 
-    spinArm (deg) {
-        this.robotParts["upperArm"].rotateY(deg);
-    }
-
-    bendShoulder (deg) {
-        this.robotParts["upperArm"].rotateZ(deg);
-    }
-
-    bendElbow (deg) {
+    bendElbow (deg) { // doesnt matter
         this.robotParts["lowerArm"].rotateZ(deg);
+    }
+
+
+    posSpinArm () {
+        this.armPos = true;
+    }
+
+    negSpinArm () {
+        this.armNeg = true;
+    }
+
+    posBendShoulder () {
+        this.shoulderPos = true;
+    }
+
+    negBendShoulder () {
+        this.shoulderNeg = true;
+    }
+
+    stopPosSpinArm () {
+        this.armPos = false;
+    }
+
+    stopNegSpinArm () {
+        this.armNeg = false;
+    }
+
+    stopPosBendShoulder () {
+        this.shoulderPos = false;
+    }
+
+    stopNegBendShoulder () {
+        this.shoulderNeg = false;
     }
 
     rightMovement () {
@@ -74,26 +101,53 @@ class Robot extends THREE.Object3D {
     }
 
     zValue() {
-        if ( (this.left && this.right) || !(this.left || this.right) ) return 0;
-        else if ( this.left ) return -Math.PI/16;
-        else if ( this.right ) return Math.PI/16;
+        if ( this.left && this.right ) return 0;
+        else if ( this.left && !this.right) return -Math.PI/16;
+        else if ( this.right && !this.left ) return Math.PI/16;
+        else return 0;
     }
 
-
     xValue() {
-        if ( (this.up && this.down) || !(this.up || this.down) ) return 0;
-        else if ( this.up ) return Math.PI/16;
-        else if ( this.down ) return -Math.PI/16;
+        if      ( this.up && this.down ) return 0;
+        else if ( this.up && !this.down) return Math.PI/16;
+        else if ( this.down && !this.up ) return -Math.PI/16;
+        else return 0;
     }
 
     setVector() {
         this.vector.set( this.xValue(), 0, this.zValue());
     }
 
-    update() {
-        var time = new Date();
+    move() {
         this.setVector()
-        this.translateOnAxis(this.vector, (time.getTime() - this.lastTime.getTime())/10 );
-        this.lastTime = time;
+        this.translateOnAxis(this.vector, (this.currentTime.getTime() - this.lastTime.getTime())/10 );
+    }
+
+    spinArm() {
+        var deg = 0;
+        if      ( this.negSpinArm && !this.posSpinArm) deg = Math.PI/32;
+        else if ( this.posSpinArm && !this.negSpinArm ) deg = -Math.PI/32;
+
+        this.robotParts["upperArm"].rotateY(deg);
+    }
+
+    bendShoulder() {
+        var deg = 0;
+        if      ( this.negBendShoulder && !this.posBendShoulder) deg = Math.PI/32;
+        else if ( this.posBendShoulder && !this.negBendShoulder ) deg = -Math.PI/32;
+        
+        this.robotParts["upperArm"].rotateZ(deg);
+    }
+
+    updateTime() {
+        this.lastTime = this.currentTime;
+        this.currentTime = new Date();
+    }
+
+    update() {
+        this.updateTime();
+        this.move();
+        this.spinArm();
+        this.bendShoulder()
     }
 }
