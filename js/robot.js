@@ -120,23 +120,23 @@ class Robot extends THREE.Object3D {
 
     move() {
         this.setVector()
-        this.translateOnAxis(this.vector, (this.currentTime.getTime() - this.lastTime.getTime())/10 );
+        this.translateOnAxis(this.vector, (this.currentTime.getTime() - this.lastTime.getTime())/13 );
     }
 
     spinArm() {
         var deg = 0;
-        if      ( this.negSpinArm && !this.posSpinArm) deg = Math.PI/32;
-        else if ( this.posSpinArm && !this.negSpinArm ) deg = -Math.PI/32;
+        if      ( this.armNeg && !this.armPos) deg = -Math.PI/50;
+        else if ( this.armPos && !this.armNeg ) deg = Math.PI/50;
 
-        this.robotParts["upperArm"].rotateY(deg);
+        this.robotParts["upperArm"].rotateY( deg *  (this.currentTime.getTime() - this.lastTime.getTime())/13 );
     }
 
     bendShoulder() {
         var deg = 0;
-        if      ( this.negBendShoulder && !this.posBendShoulder) deg = Math.PI/32;
-        else if ( this.posBendShoulder && !this.negBendShoulder ) deg = -Math.PI/32;
-        
-        this.robotParts["upperArm"].rotateZ(deg);
+        if      ( this.shoulderNeg && !this.shoulderPos ) deg =  Math.PI/135;
+        else if ( this.shoulderPos && !this.shoulderNeg ) deg = -Math.PI/135;
+
+        this.robotParts["upperArm"].rotateZ( deg * (this.currentTime.getTime() - this.lastTime.getTime())/10 );
     }
 
     updateTime() {
