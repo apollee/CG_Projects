@@ -1,9 +1,11 @@
-class robotCamera
+class robotCamera extends THREE.OrthographicCamera
 {
     constructor() {
+        var width = window.innerWidth / aspectratio;
+        var height = window.innerHeight / aspectratio;
+        super(-width, width, height, -height, 1, 2000 );
+
         this.n = 1;
-        var ws = this.normalizeWindow();
-        this.camera = new THREE.OrthographicCamera(ws[0], ws[1], ws[2], ws[3], 1, 2000 );
         this.topView();
         this.resize();
     }
@@ -13,7 +15,7 @@ class robotCamera
 
         this.resize();
 
-        this.camera.position.set(0, window.innerHeight/2, 0);
+        this.position.set(0, window.innerHeight/2, 0);
         this.lookAt();
     }
 
@@ -23,7 +25,7 @@ class robotCamera
 
         this.resize();
 
-        this.camera.position.set( width/2, 0, 0);
+        this.position.set( width/2, 0, 0);
         this.lookAt()
     }
 
@@ -32,7 +34,7 @@ class robotCamera
 
         this.resize();
         
-        this.camera.position.set(0, 0, 500);
+        this.position.set(0, 0, 500);
         this.lookAt();
     }
 
@@ -44,17 +46,17 @@ class robotCamera
 
     resize() {
         renderer.setSize(window.innerWidth, window.innerHeight);
-        // update the camera
+        // update the Camera
         var ws = this.normalizeWindow();
-        this.camera.left = ws[0];
-        this.camera.right = ws[1];
-        this.camera.top = ws[2];
-        this.camera.bottom = ws[3];
-        this.camera.updateProjectionMatrix();
+        this.left = ws[0];
+        this.right = ws[1];
+        this.top = ws[2];
+        this.bottom = ws[3];
+        this.updateProjectionMatrix();
     }
 
     lookAt() {
-        this.camera.lookAt(scene.position);
+        super.lookAt(scene.position);
     }
 
     normalizeWindow() {
@@ -63,10 +65,6 @@ class robotCamera
         if ( this.n != 1 )
              return [-width, width, height * 1.6, -height * .4];
         else return [-width, width, height, -height];
-    }
-
-    getCamera() {
-        return this.camera;
     }
 }
 

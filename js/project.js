@@ -1,7 +1,7 @@
 /* global THREE */
 
 var scene, renderer;
-var robCamera;
+var camera;
 
 var aspectratio;
 function init() {
@@ -40,14 +40,14 @@ function createScene() {
 }
 
 function createCamera() {
-    robCamera = new robotCamera();
+    camera = new robotCamera();
 }
 
 
 function render() {
     'use strict';
 
-    renderer.render(scene, robCamera.getCamera());
+    renderer.render(scene, camera);
 }
 
 function animate() {
@@ -57,7 +57,7 @@ function animate() {
 function onResize() {
     'use strict';
 
-    robCamera.resize();
+    camera.resize();
 
     render();
 }
@@ -68,13 +68,13 @@ function onKeyDown(e) {
     switch(e.keyCode) {
 
         case 49: // key 1 - top view camera
-            robCamera.topView();
+            camera.topView();
             break;
         case 50: // key 2 - side view camera
-            robCamera.sideView();
+            camera.sideView();
             break;
         case 51: // key 3 - front view camera
-            robCamera.frontView();
+            camera.frontView();
             break;
 
         case 52: // key 4
