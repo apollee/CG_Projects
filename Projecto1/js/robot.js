@@ -148,6 +148,6 @@ class Robot extends THREE.Object3D {
         this.updateTime();
         this.move();
         this.spinArm();
-        this.bendShoulder()
+        this.bendShoulder();
     }
 }

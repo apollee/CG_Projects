@@ -1,16 +1,14 @@
-/* global THREE */
+var scene, renderer, cannon, aspectratio;
+var cameraOrthographic;
+var camerasPerspective;
 
-var scene, renderer;
-var camera;
-var robot;
-
-var aspectratio;
-function init() {
-    'use strict';
+function init(){
+    'use strict'
 
     renderer = new THREE.WebGLRenderer();
+    //
     renderer.setSize(window.innerWidth, window.innerHeight);
-
+    
     aspectratio = window.innerWidth/ window.innerHeight * 15;
 
     document.body.appendChild(renderer.domElement);
@@ -20,125 +18,87 @@ function init() {
     render();
 
     window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyup);
+    window.addEventListener("keyup", onKeyUp);
     window.addEventListener("resize", onResize);
 }
 
-function createScene() {
+function createScene(){
     'use strict';
-    
+
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(5));
 
-    createTarget(20, 15, 0);
-    robot = new Robot(-20, 0, 0);
-
-    robot.bendElbow( -Math.PI/2 );
+    cannon = new Cannon(0, 0, 0);
     
-    scene.add( robot );
+    scene.add(cannon);
 }
 
-function createCamera() {
-    camera = new robotCamera();
+function createCamera(){
+    cameraOrthographic = new cannonCamera();
 }
 
+function render(){
+    'use strict'
 
-function render() {
-    'use strict';
-
-    renderer.render(scene, camera);
+    renderer.render(scene, cameraOrthographic);
+    //renderer.render(scene, camerasPerspective);
 }
 
 function animate() {
-    robot.update();
+    //.update();
     render();
     requestAnimationFrame(animate);
 }
 
-function onResize() {
+function onResize(){
     'use strict';
-    camera.resize();
+    //
 }
 
-function onKeyDown(e) {
+function onKeyDown(e){
     'use strict';
-    
-    switch(e.keyCode) {
 
-        case 49: // key 1 - top view camera
-            camera.topView();
+    switch(e.keyCode){
+        case 49: // key 1 - top view camera (orthographic)
+            cameraOrthographic.topView();
             break;
-        case 50: // key 2 - side view camera
-            camera.sideView();
+        case 50: // key 2 - all field of play (perspective)
+        scene.traverse( function (node) {
+            if (node instanceof THREE.Mesh) {
+                node.material.wireframe = !node.material.wireframe;
+            }
+        } );
             break;
-        case 51: // key 3 - front view camera
-            camera.frontView();
+        case 51: // key 3 - ball camera (perspective)
+            ;
             break;
-
-        case 52: // key 4
-            scene.traverse( function (node) {
-                if (node instanceof THREE.Mesh) {
-                    node.material.wireframe = !node.material.wireframe;
-                }
-            } );
+        case 37: // key Left - move selected cannon angle left
+            cannon.leftMovement();
             break;
-
-        case 38:   // key Up - move robot up
-            robot.upMovement();
+        case 39: // key Right - move selected cannon angle right
+            cannon.rightMovement();
             break;
-        case 40:  // key Down - move robot down
-            robot.downMovement();
+        case 81: // key Q & q - choose cannon 1
+            ;
             break;
-        case 37: // key Left - move robot left
-            robot.leftMovement();
+        case 87: // key W & w - choose cannon 2
+            ;
             break;
-        case 39: // key Right - move robot right
-            robot.rightMovement();
-            break;
-
-        case 65: // key A e a - controlar angulo 1
-            robot.posSpinArm();
-            break;
-        case 83: // key S e s - controlar angulo 1
-            robot.negSpinArm();
-            break;
-        case 87: // key W e w - controlar angulo 2
-            robot.posBendShoulder();
-            break;
-        case 81: // key Q e q - controlar angulo 2
-            robot.negBendShoulder();
+        case 69: // key E & e - choose cannon 3
+            ;
             break;
     }
 }
 
-function onKeyup(e) {
-    'use strict'
+function onKeyUp(e){
+    'use strict';
 
-    switch(e.keyCode) {
-        case 38:   // key Up - move robot up
-            robot.stopUpMovement();
+    switch(e.keyCode){
+        case 37: // key Left - move selected cannon angle left
+            cannon.stopLeftMovement();
             break;
-        case 40:  // key Down - move robot down
-            robot.stopDownMovement();
-            break;
-        case 37: // key Left - move robot left
-            robot.stopLeftMovement();
-            break;
-        case 39: // key Right - move robot right
-            robot.stopRightMovement();
-            break;
-
-        case 65: // key A e a - controlar angulo 1
-            robot.stopPosSpinArm();
-            break;
-        case 83: // key S e s - controlar angulo 1
-            robot.stopNegSpinArm();
-            break;
-        case 87: // key W e w - controlar angulo 2
-            robot.stopPosBendShoulder();
-            break;
-        case 81: // key Q e q - controlar angulo 2
-            robot.stopNegBendShoulder();
+        case 39: // key Right - move selected cannon angle right
+            cannon.stopRightMovement();
             break;
     }
 }
