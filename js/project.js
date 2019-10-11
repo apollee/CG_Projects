@@ -1,4 +1,5 @@
-var scene, renderer, cannon, aspectratio;
+var cannons = {};
+var scene, renderer, aspectratio;
 var cameraOrthographic;
 var camerasPerspective;
 
@@ -28,9 +29,16 @@ function createScene(){
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(5));
 
-    cannon = new Cannon(0, 0, 0);
-    
-    scene.add(cannon);
+
+    cannons["cannon1"] = new Cannon(-30, 0, -25);
+    cannons["cannon2"] = new Cannon(-30, 0,   0);
+    cannons["cannon3"] = new Cannon(-30, 0,  25);
+
+    createWall(50, 0, 0);
+
+    scene.add(cannons["cannon1"]);
+    scene.add(cannons["cannon2"]);
+    scene.add(cannons["cannon3"]);
 }
 
 function createCamera(){
@@ -63,7 +71,7 @@ function onKeyDown(e){
             cameraOrthographic.topView();
             break;
         case 50: // key 2 - all field of play (perspective)
-        scene.traverse( function (node) {
+        scene.traverse( function (node) {//MUDAR ESTA MERDA!!!!
             if (node instanceof THREE.Mesh) {
                 node.material.wireframe = !node.material.wireframe;
             }
