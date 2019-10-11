@@ -36,6 +36,11 @@ function createScene(){
 
     createWall(50, 0, 0);
 
+    for(var i = 0; i < THREE.Math.randFloat(1, 6); i++){
+        var ball = new Ball(THREE.Math.randFloat(4, 46), 0, THREE.Math.randFloat( -24, 24), 2)
+        scene.add(ball);
+    }
+
     scene.add(cannons["cannon1"]);
     scene.add(cannons["cannon2"]);
     scene.add(cannons["cannon3"]);
