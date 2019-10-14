@@ -2,12 +2,12 @@ var cannons = {};
 var scene, renderer, aspectratio;
 var cameraOrthographic;
 var camerasPerspective;
+var selected_cannon;
 
 function init(){
     'use strict'
 
     renderer = new THREE.WebGLRenderer();
-    //
     renderer.setSize(window.innerWidth, window.innerHeight);
     
     aspectratio = window.innerWidth/ window.innerHeight * 15;
@@ -44,6 +44,8 @@ function createScene(){
     scene.add(cannons["cannon1"]);
     scene.add(cannons["cannon2"]);
     scene.add(cannons["cannon3"]);
+
+    selected_cannon = cannons["cannon1"];
 }
 
 function createCamera(){
@@ -58,7 +60,7 @@ function render(){
 }
 
 function animate() {
-    //.update();
+    selected_cannon.update();
     render();
     requestAnimationFrame(animate);
 }
@@ -86,19 +88,19 @@ function onKeyDown(e){
             ;
             break;
         case 37: // key Left - move selected cannon angle left
-            cannon.leftMovement();
+            selected_cannon.leftMovement();
             break;
         case 39: // key Right - move selected cannon angle right
-            cannon.rightMovement();
+            selected_cannon.rightMovement();
             break;
         case 81: // key Q & q - choose cannon 1
-            ;
+            selected_cannon = cannons["cannon1"];
             break;
         case 87: // key W & w - choose cannon 2
-            ;
+            selected_cannon = cannons["cannon2"];
             break;
         case 69: // key E & e - choose cannon 3
-            ;
+            selected_cannon = cannons["cannon3"];
             break;
     }
 }
@@ -108,10 +110,10 @@ function onKeyUp(e){
 
     switch(e.keyCode){
         case 37: // key Left - move selected cannon angle left
-            cannon.stopLeftMovement();
+            selected_cannon.stopLeftMovement();
             break;
         case 39: // key Right - move selected cannon angle right
-            cannon.stopRightMovement();
+            selected_cannon.stopRightMovement();
             break;
     }
 }

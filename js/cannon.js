@@ -4,6 +4,7 @@ class Cannon extends THREE.Object3D {
         super();
 
         this.cannonParts = {};
+        this.vector = new THREE.Vector3(0,0,0);
 
         var base = createCannonBase(this, 0, 0, 0);
         var tube = createCannonTube(base, 0, 7, 0);
@@ -19,6 +20,10 @@ class Cannon extends THREE.Object3D {
         this.right = false;
         this.up = false;
         this.down = false;
+
+        this.lastTime = new Date();
+        this.currentTime = new Date();
+
     }
 
     stopRightMovement(){
@@ -36,5 +41,37 @@ class Cannon extends THREE.Object3D {
     leftMovement(){
         this.left = true;
     }
+
+    notSelected(){
+
+    }
+
+    selected(){
+
+    }
+
+    spinCannon(){
+        var deg = 0;
+        if(this.right && !this.left){
+            deg = -Math.PI/50;
+        }else if(!this.right && this.left){
+            deg = Math.PI/50;
+        }
+
+        this.rotateY(deg * (this.currentTime.getTime() - this.lastTime.getTime())/13);
+    }
+
+    updateTime(){
+        this.lastTime = this.currentTime;
+        this.currentTime = new Date();
+    }
+
+
+    update(){
+        this.updateTime();
+        this.spinCannon();
+    }
+
 }
+
 
