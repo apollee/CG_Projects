@@ -16,7 +16,7 @@ function createFrontWall(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#be9b7b', wireframe: true});
-    var geometry = new THREE.BoxGeometry(2, 15, 6, 1, 1, 1);
+    var geometry = new THREE.BoxGeometry(1, 7.5, 3, 1, 1, 1);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);
@@ -40,7 +40,7 @@ function createSideWall(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#be9b7b', wireframe: true});
-    var geometry = new THREE.BoxGeometry(2, 15, 6, 1, 1, 1);
+    var geometry = new THREE.BoxGeometry(1, 7.5, 3, 1, 1, 1);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);

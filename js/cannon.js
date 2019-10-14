@@ -7,8 +7,8 @@ class Cannon extends THREE.Object3D {
         this.vector = new THREE.Vector3(0,0,0);
 
         var base = createCannonBase(this, 0, 0, 0);
-        var tube = createCannonTube(base, 0, 7, 0);
-        var hat = createCannonHat(tube, -20, 0, 0);
+        var tube = createCannonTube(base, 0, 3.5, 0);
+        var hat = createCannonHat(tube, -10, 0, 0);
 
         this.position.set(x, y, z);
         
