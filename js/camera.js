@@ -20,8 +20,7 @@ class cannonCamera extends THREE.OrthographicCamera {
         this.lookAt();
     }
 
-    lookAt(){
+    lookAt() {
         super.lookAt(scene.position);
     }
-
 }

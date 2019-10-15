@@ -4,13 +4,13 @@ var cameraOrthographic;
 var camerasPerspective;
 var selected_cannon;
 
-function init(){
+function init() {
     'use strict'
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     
-    aspectratio = window.innerWidth/ window.innerHeight * 15;
+    aspectratio = window.innerWidth/ window.innerHeight * 10;
 
     document.body.appendChild(renderer.domElement);
 
@@ -23,7 +23,7 @@ function init(){
     window.addEventListener("resize", onResize);
 }
 
-function createScene(){
+function createScene() {
     'use strict';
 
     scene = new THREE.Scene();
@@ -48,11 +48,11 @@ function createScene(){
     selected_cannon = cannons["cannon1"];
 }
 
-function createCamera(){
+function createCamera() {
     cameraOrthographic = new cannonCamera();
 }
 
-function render(){
+function render() {
     'use strict'
 
     renderer.render(scene, cameraOrthographic);
@@ -65,12 +65,12 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-function onResize(){
+function onResize() {
     'use strict';
     //
 }
 
-function onKeyDown(e){
+function onKeyDown(e) {
     'use strict';
 
     switch(e.keyCode){
@@ -105,7 +105,7 @@ function onKeyDown(e){
     }
 }
 
-function onKeyUp(e){
+function onKeyUp(e) {
     'use strict';
 
     switch(e.keyCode){

@@ -1,6 +1,6 @@
 class Cannon extends THREE.Object3D {
     
-    constructor(x, y, z){
+    constructor(x, y, z) {
         super();
 
         this.cannonParts = {};
@@ -26,52 +26,49 @@ class Cannon extends THREE.Object3D {
 
     }
 
-    stopRightMovement(){
+    stopRightMovement() {
         this.right = false;
     }
     
-    stopLeftMovement(){
+    stopLeftMovement() {
         this.left = false;
     }
     
-    rightMovement(){
+    rightMovement() {
         this.right = true;
     }
     
-    leftMovement(){
+    leftMovement() {
         this.left = true;
     }
 
-    notSelected(){
+    notSelected() {
 
     }
 
-    selected(){
+    selected() {
 
     }
 
-    spinCannon(){
+    spinCannon() {
         var deg = 0;
-        if(this.right && !this.left){
-            deg = -Math.PI/50;
-        }else if(!this.right && this.left){
-            deg = Math.PI/50;
-        }
+
+        if( this.right && !this.left ) deg = -Math.PI/50;
+
+        else if ( !this.right && this.left ) deg = Math.PI/50;
 
         this.rotateY(deg * (this.currentTime.getTime() - this.lastTime.getTime())/13);
     }
 
-    updateTime(){
+    updateTime() {
         this.lastTime = this.currentTime;
         this.currentTime = new Date();
     }
 
 
-    update(){
+    update() {
         this.updateTime();
         this.spinCannon();
     }
 
 }
-
-
