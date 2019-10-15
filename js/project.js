@@ -1,8 +1,14 @@
-var cannons = {};
+var time;
+
 var scene, renderer, aspectratio;
-var cameraOrthographic;
-var camerasPerspective;
+
+var orthoCam;
+var persCam;
+
+var cannons = {};
 var selected_cannon;
+
+var balls;
 
 function init() {
     'use strict'
@@ -14,9 +20,13 @@ function init() {
 
     document.body.appendChild(renderer.domElement);
 
+    balls = new ballsHandler();
+    time = new timeProj();
+
     createScene();
     createCamera();
     render();
+
 
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
@@ -47,19 +57,20 @@ function createScene() {
 
     selected_cannon = cannons["cannon1"];
 }
-
+4
 function createCamera() {
-    cameraOrthographic = new cannonCamera();
+    orthoCam = new cannonCamera();
 }
 
 function render() {
     'use strict'
 
-    renderer.render(scene, cameraOrthographic);
-    //renderer.render(scene, camerasPerspective);
+    renderer.render(scene, orthoCam);
+    //renderer.render(scene, persCam);
 }
 
 function animate() {
+    time.updateTime();
     selected_cannon.update();
     render();
     requestAnimationFrame(animate);
@@ -75,7 +86,7 @@ function onKeyDown(e) {
 
     switch(e.keyCode){
         case 49: // key 1 - top view camera (orthographic)
-            cameraOrthographic.topView();
+            orthoCam.topView();
             break;
         case 50: // key 2 - all field of play (perspective)
         scene.traverse( function (node) {//MUDAR ESTA MERDA!!!!
