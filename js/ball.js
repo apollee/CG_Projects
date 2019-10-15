@@ -1,4 +1,4 @@
-class Ball extends THREE.Object3D {
+class Ball extends THREE.Object3D { /* lacks attributes such as direction */
 
 	constructor(x, y, z) {
         'use strict';
@@ -13,7 +13,7 @@ class Ball extends THREE.Object3D {
 		this.position.set(x, y, z);
 	}
 
-    update() {
-        
+    update() {  /* needs to check if its out of bounds and colisions */
+        return true;
     }
 }

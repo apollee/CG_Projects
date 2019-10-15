@@ -10,6 +10,6 @@ class timeProj {
     }
 
     getTimeDiff() {
-        this.currentTime.getTime() - this.lastTime.getTime();
+        return this.currentTime.getTime() - this.lastTime.getTime();
     }
 }

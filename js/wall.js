@@ -1,9 +1,9 @@
-function createWall( x, y, z){
+function createAllWalls(x, y, z){
     'use strict';
 
     var wall = new THREE.Object3D();
 
-    createWallBase1(wall, 0, 0, 0); // wall referencial origin
+    createFrontWall(wall, 0, 0, 0); // wall referencial origin
     createSideWall(wall, -23, 0,  27);
     createSideWall(wall, -23, 0, -27);
 
@@ -13,7 +13,7 @@ function createWall( x, y, z){
 
 }
 
-function createWallBase1(obj, x, y, z) {
+function createFrontWall(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#aaaaaa', wireframe: true});

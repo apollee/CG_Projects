@@ -3,7 +3,6 @@ class Cannon extends THREE.Object3D {
     constructor(x, y, z) {
         super();
 
-        this.cannonParts = {};
         this.vector = new THREE.Vector3(0,0,0);
 
         var base = createCannonBase(this, 0, 0, 0);
@@ -11,19 +10,11 @@ class Cannon extends THREE.Object3D {
         var hat = createCannonHat(tube, -10, 0, 0);
 
         this.position.set(x, y, z);
-        
-        this.cannonParts["base"] = base;
-        this.cannonParts["tube"] = tube;
-        this.cannonParts["hat"] = hat;
 
         this.left = false;
         this.right = false;
         this.up = false;
         this.down = false;
-
-        this.lastTime = new Date();
-        this.currentTime = new Date();
-
     }
 
     stopRightMovement() {
@@ -42,32 +33,35 @@ class Cannon extends THREE.Object3D {
         this.left = true;
     }
 
-    notSelected() {
+    unSelect() {
+        this.stopLeftMovement();
+        this.stopRightMovement();
 
+        /* colour */
     }
 
-    selected() {
+    select() {
 
+        /* colour */
     }
 
-    spinCannon() {
+    spinCannon() { 
         var deg = 0;
 
-        if( this.right && !this.left ) deg = -Math.PI/50;
+        if(this.right && !this.left)
+            deg = -Math.PI/50;
+        
+        else if(!this.right && this.left)
+            deg = Math.PI/50;
 
-        else if ( !this.right && this.left ) deg = Math.PI/50;
-
-        this.rotateY(deg * (this.currentTime.getTime() - this.lastTime.getTime())/13);
+        this.rotateY(deg * (time.getTimeDiff())/13);
     }
 
-    updateTime() {
-        this.lastTime = this.currentTime;
-        this.currentTime = new Date();
+    shoot() {
+        /* return created ball */
     }
-
 
     update() {
-        this.updateTime();
         this.spinCannon();
     }
 

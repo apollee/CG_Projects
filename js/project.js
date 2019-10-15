@@ -5,9 +5,7 @@ var scene, renderer, aspectratio;
 var orthoCam;
 var persCam;
 
-var cannons = {};
-var selected_cannon;
-
+var cannons;
 var balls;
 
 function init() {
@@ -20,8 +18,8 @@ function init() {
 
     document.body.appendChild(renderer.domElement);
 
-    balls = new ballsHandler();
     time = new timeProj();
+    balls = new ballsHandler();
 
     createScene();
     createCamera();
@@ -39,25 +37,18 @@ function createScene() {
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(5));
 
+    createAllWalls(50, 0, 0);
 
-    cannons["cannon1"] = new Cannon(-30, 0, -25);
-    cannons["cannon2"] = new Cannon(-30, 0,   0);
-    cannons["cannon3"] = new Cannon(-30, 0,  25);
+    cannons = new cannonHandler(scene);
 
-    createWall(50, 0, 0);
+    for(var i = THREE.Math.randFloat(1, 6); i >= 0 ; i--) {
+        var ball = new Ball(THREE.Math.randFloat(4, 46), 0, THREE.Math.randFloat( -24, 24), 2);
 
-    for(var i = 0; i < THREE.Math.randFloat(1, 6); i++){
-        var ball = new Ball(THREE.Math.randFloat(4, 46), 0, THREE.Math.randFloat( -24, 24), 2)
+        balls.addBall(ball);
         scene.add(ball);
     }
-
-    scene.add(cannons["cannon1"]);
-    scene.add(cannons["cannon2"]);
-    scene.add(cannons["cannon3"]);
-
-    selected_cannon = cannons["cannon1"];
 }
-4
+
 function createCamera() {
     orthoCam = new cannonCamera();
 }
@@ -70,8 +61,12 @@ function render() {
 }
 
 function animate() {
+    'use strict'
+
     time.updateTime();
-    selected_cannon.update();
+    cannons.update();
+    balls.update();
+
     render();
     requestAnimationFrame(animate);
 }
@@ -85,6 +80,9 @@ function onKeyDown(e) {
     'use strict';
 
     switch(e.keyCode){
+        case 32:
+            cannons.selectedShoot();
+            break;
         case 49: // key 1 - top view camera (orthographic)
             orthoCam.topView();
             break;
@@ -99,19 +97,19 @@ function onKeyDown(e) {
             ;
             break;
         case 37: // key Left - move selected cannon angle left
-            selected_cannon.leftMovement();
+            cannons.selectedLeftMovement();
             break;
         case 39: // key Right - move selected cannon angle right
-            selected_cannon.rightMovement();
+            cannons.selectedRightMovement();
             break;
-        case 81: // key Q & q - choose cannon 1
-            selected_cannon = cannons["cannon1"];
+        case 81: // key Q & q - choose cannon 0
+            cannons.select(0);
             break;
-        case 87: // key W & w - choose cannon 2
-            selected_cannon = cannons["cannon2"];
+        case 87: // key W & w - choose cannon 1
+            cannons.select(1);
             break;
-        case 69: // key E & e - choose cannon 3
-            selected_cannon = cannons["cannon3"];
+        case 69: // key E & e - choose cannon 2
+            cannons.select(2);
             break;
     }
 }
@@ -121,10 +119,10 @@ function onKeyUp(e) {
 
     switch(e.keyCode){
         case 37: // key Left - move selected cannon angle left
-            selected_cannon.stopLeftMovement();
+            cannons.selectedStopLeftMovement();
             break;
         case 39: // key Right - move selected cannon angle right
-            selected_cannon.stopRightMovement();
+            cannons.selectedStopRightMovement();
             break;
     }
 }

@@ -8,8 +8,8 @@ function createCannonBase(obj, x, y, z) {
     var base = new THREE.Group();
 
     createBottomBase(base, -1.5, 0, 0); // base referencial origin
-    createWallBase(base, -1.5, 1, 3.5);
-    createWallBase(base, -1.5, 1, -3.5);
+    createSideBase(base, -1.5, 1, 3.5);
+    createSideBase(base, -1.5, 1, -3.5);
     createWheel(base, -2, -2, 4.25);
     createWheel(base, -2, -2, -4.25);
 
@@ -30,7 +30,7 @@ function createBottomBase(obj, x, y, z) {
     obj.add(mesh);
 }
 
-function createWallBase(obj, x, y, z) {
+function createSideBase(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#be9b7b', wireframe: true});
