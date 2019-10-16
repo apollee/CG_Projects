@@ -14,6 +14,7 @@ class FollowBallCamera extends THREE.PerspectiveCamera {
     }
 
     resize() {
-
+        this.aspect = renderer.getSize().width / renderer.getSize().height;
+        this.updateProjectionMatrix();
     }
 }

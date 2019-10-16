@@ -13,11 +13,12 @@ class ballsHandler {
     }
 
     removeBall(index) {
+        scene.remove(this.balls[index]);
         this.balls.splice(index, 1);
     }
 
     axisShowHide() {
-        this.ball.forEach( ball => { ball.axisShowHide(); } );
+        this.balls.forEach( ball => { ball.axisShowHide(); } );
     }
 
     update () {
@@ -25,7 +26,7 @@ class ballsHandler {
 
         for (var i = this.balls.length - 1; i >= 0; i--) {
             if ( !this.balls[i].update() )
-                this.removelBall(index); /* ball out of bounds; is it neccessary to remove from scene ??? */
+                this.removelBall(index); /* ball out of bounds */
         }
     }
 }

@@ -16,14 +16,17 @@ class TopCamera extends THREE.OrthographicCamera {
         super.lookAt(scene.position);
     }
 
-
-    update() {
-        
-    }
-
     resize() {
-
+        var width = window.innerWidth / aspectratio;
+        var height = window.innerHeight / aspectratio;
+        this.left = -width;
+        this.right = width;
+        this.top = height;
+        this.bottom = -height;
+        this.updateProjectionMatrix();
     }
+
+    update() {} /**/
 }
 
 class PresCamera extends THREE.PerspectiveCamera {
@@ -35,11 +38,10 @@ class PresCamera extends THREE.PerspectiveCamera {
         super.lookAt(scene.position);
     }
 
-    update() {
-        
-    }
-
     resize() {
-
+        this.aspect = renderer.getSize().width / renderer.getSize().height;
+        this.updateProjectionMatrix();
     }
+    
+    update() {} /**/
 }
