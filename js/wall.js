@@ -10,7 +10,6 @@ function createAllWalls(x, y, z){
     wall.position.set(x, y, z);
 
     scene.add(wall);
-
 }
 
 function createFrontWall(obj, x, y, z) {

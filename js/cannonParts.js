@@ -2,25 +2,27 @@
  * CannonBase
  */
 
-function createCannonBase(obj, x, y, z) {
+function createCannonBase(obj, x, y, z, n) {
     'use strict';
 
     var base = new THREE.Group();
 
-    createBottomBase(base, -1.5, 0, 0); // base referencial origin
-    createSideBase(base, -1.5, 1, 3.5);
-    createSideBase(base, -1.5, 1, -3.5);
-    createWheel(base, -2, -2, 4.25);
-    createWheel(base, -2, -2, -4.25);
+    createCannonBottomBase(base, -1.5, 0, 0, n); // base referencial origin
+    createCannonSideBase(base, -1.5, 1, 3.5, n);
+    createCannonSideBase(base, -1.5, 1, -3.5, n);
+    createCannonWheel(base, -2, -2, 4.25, n);
+    createCannonWheel(base, -2, -2, -4.25, n);
 
     base.position.set(x, y, z);
 
     obj.add(base);
 
+    base.name = "cannonBase" + n;
+
     return base;
 }
 
-function createBottomBase(obj, x, y, z) {
+function createCannonBottomBase(obj, x, y, z, n) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#be9b7b', wireframe: true});
@@ -28,9 +30,11 @@ function createBottomBase(obj, x, y, z) {
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);
+
+    mesh.name = "cannonBottomBase" + n;
 }
 
-function createSideBase(obj, x, y, z) {
+function createCannonSideBase(obj, x, y, z, n) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#be9b7b', wireframe: true});
@@ -38,19 +42,23 @@ function createSideBase(obj, x, y, z) {
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);
+
+    mesh.name = "cannonSideBase" + n;
 }
 
-function createWheel(obj, x, y, z) {
+function createCannonWheel(obj, x, y, z, n) {
     'use strict';
+
     var wheel = new THREE.Group();
-    createWheelTorus(wheel, 0 , 0, 0);
-    createWheelCylinder(wheel, 0, 0, 0);
+    createCannonWheelTorus(wheel, 0 , 0, 0, n);
+    createCannonWheelCylinder(wheel, 0, 0, 0, n);
     wheel.position.set(x, y, z);
     obj.add(wheel);
-    return wheel;
+
+    wheel.name = "cannonWheel" + n;
 }
 
-function createWheelTorus(obj, x, y, z) {
+function createCannonWheelTorus(obj, x, y, z, n) {
 	'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#4b3832', wireframe: true});
@@ -58,9 +66,11 @@ function createWheelTorus(obj, x, y, z) {
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);
+
+    mesh.name = "cannonWhellTorus" + n;
 }
 
-function createWheelCylinder(obj, x, y, z) {
+function createCannonWheelCylinder(obj, x, y, z, n) {
 	'use strict';
 	var angle = 0;
 	var i;
@@ -72,6 +82,8 @@ function createWheelCylinder(obj, x, y, z) {
     	angle += Math.PI/4;
     	mesh.position.set(x, y, z);
     	obj.add(mesh);
+
+        mesh.name = "cannonWheelCylinder" + n;
     }
 }
 
@@ -80,22 +92,24 @@ function createWheelCylinder(obj, x, y, z) {
  * Tube
  */
 
- function createCannonTube(obj, x, y, z) {
+ function createCannonTube(obj, x, y, z, n) {
     'use strict';
 
     var tube = new THREE.Group();
 
-    createTube(tube, 0, 0, 0); // Tube referencial origin
-    createExit(tube, 10, 0, 0);
+    createCannonTubeCyl(tube, 0, 0, 0, n); // Tube referencial origin
+    createCannonTubeExit(tube, 10, 0, 0, n);
 
     tube.position.set(x, y, z);
 
     obj.add(tube);
 
+    tube.name = "cannonTube" + n;
+
     return tube;
 }
 
-function createTube(obj, x, y, z) {
+function createCannonTubeCyl(obj, x, y, z, n) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#4e635a', wireframe: true});
@@ -104,9 +118,11 @@ function createTube(obj, x, y, z) {
     mesh.rotation.set(-Math.PI/2, 0, -Math.PI/2);
     mesh.position.set(x, y, z);
     obj.add(mesh);
+
+    mesh.name = "cannonTubeCyl" + n;
 }
 
-function createExit(obj, x, y, z) {
+function createCannonTubeExit(obj, x, y, z, n) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#854442', wireframe: true});
@@ -115,6 +131,8 @@ function createExit(obj, x, y, z) {
     mesh.rotation.set(0, -Math.PI/2, 0);
     mesh.position.set(x, y, z);
     obj.add(mesh);
+
+    mesh.name = "cannonTubeExit" + n;
 }
 
 
@@ -122,22 +140,24 @@ function createExit(obj, x, y, z) {
  * Hat
  */
 
- function createCannonHat(obj, x, y, z) {
+ function createCannonHat(obj, x, y, z, n) {
     'use strict';
 
     var hat = new THREE.Group();
 
-    createHat(hat, 0, 0, 0); // hat referencial origin
-    createHatBall(hat, -3.5, 0, 0);
+    createCannonHatBase(hat, 0, 0, 0, n); // hat referencial origin
+    createCannonHatBall(hat, -3.5, 0, 0, n);
 
     hat.position.set(x, y, z);
 
     obj.add(hat);
 
+    hat.name = "cannonHat" + n;
+
     return hat;
 }
 
-function createHat(obj, x, y, z) {
+function createCannonHatBase(obj, x, y, z, n) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#854442', wireframe: true});
@@ -146,9 +166,11 @@ function createHat(obj, x, y, z) {
     mesh.rotation.set(0, -Math.PI/2, 0);
     mesh.position.set(x, y, z);
     obj.add(mesh);
+
+    mesh.name = "cannonHatBase" + n;
 }
 
-function createHatBall(obj, x, y, z) {
+function createCannonHatBall(obj, x, y, z, n) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#525b5c', wireframe: true});
@@ -156,4 +178,6 @@ function createHatBall(obj, x, y, z) {
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);
+
+    mesh.name = "cannonHatBall" + n;
 }
