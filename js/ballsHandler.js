@@ -2,14 +2,22 @@ class ballsHandler {
 
     constructor() {
         this.balls = [];
+
+        for (var i = THREE.Math.randFloat(1, 6); i >= 0 ; i--)
+            this.addBall( new Ball(THREE.Math.randFloat(4, 46), 0, THREE.Math.randFloat( -24, 24), 2) );    
     }
 
     addBall(ball) {
         this.balls.push(ball);
+        scene.add(ball);
     }
 
     removeBall(index) {
         this.balls.splice(index, 1);
+    }
+
+    axisShowHide() {
+        this.ball.forEach( ball => { ball.axisShowHide(); } );
     }
 
     update () {

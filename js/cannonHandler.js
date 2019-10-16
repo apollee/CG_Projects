@@ -1,9 +1,9 @@
 class cannonHandler {
 
-    constructor(scene) {
-        this.cannons = [ new Cannon(-30, 0, -25, 0),
-                         new Cannon(-30, 0,   0, 1),
-                         new Cannon(-30, 0,  25, 2) ];
+    constructor() {
+        this.cannons = [ new Cannon(-50, 0, -30, 0),
+                         new Cannon(-50, 0,   0, 1),
+                         new Cannon(-50, 0,  30, 2) ];
 
         this.cannons.forEach( cannon => { scene.add(cannon) } );
 

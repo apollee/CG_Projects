@@ -2,8 +2,11 @@ var time;
 
 var scene, renderer, aspectratio;
 
-var orthoCam;
+var topCam;
 var persCam;
+var followBallCam;
+
+var activeCam;
 
 var cannons;
 var balls;
@@ -19,10 +22,9 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     time = new timeProj();
-    balls = new ballsHandler();
 
     createScene();
-    createCamera();
+    createCameras();
     render();
 
 
@@ -37,27 +39,24 @@ function createScene() {
     scene = new THREE.Scene();
     scene.add(new THREE.AxisHelper(5));
 
-    createAllWalls(50, 0, 0);
+    createAllWalls(70, 0, 0);
 
-    cannons = new cannonHandler(scene);
-
-    for(var i = THREE.Math.randFloat(1, 6); i >= 0 ; i--) {
-        var ball = new Ball(THREE.Math.randFloat(4, 46), 0, THREE.Math.randFloat( -24, 24), 2);
-
-        balls.addBall(ball);
-        scene.add(ball);
-    }
+    cannons = new cannonHandler();
+    balls = new ballsHandler();
 }
 
-function createCamera() {
-    orthoCam = new cannonCamera();
+function createCameras() {
+    topCam = new TopCamera();
+    persCam = new PresCamera();
+    followBallCamera = new FollowBallCamera();
+
+    activeCam = topCam;
 }
 
 function render() {
     'use strict'
 
-    renderer.render(scene, orthoCam);
-    //renderer.render(scene, persCam);
+    renderer.render(scene, activeCam);
 }
 
 function animate() {
@@ -73,7 +72,10 @@ function animate() {
 
 function onResize() {
     'use strict';
-    //
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    activeCam.resize();
 }
 
 function onKeyDown(e) {
@@ -84,17 +86,16 @@ function onKeyDown(e) {
             cannons.selectedShoot();
             break;
         case 49: // key 1 - top view camera (orthographic)
-            orthoCam.topView();
+            activeCam = topCam;
+            activeCam.resize();
             break;
         case 50: // key 2 - all field of play (perspective)
-        scene.traverse( function (node) {//MUDAR ESTA MERDA!!!!
-            if (node instanceof THREE.Mesh) {
-                node.material.wireframe = !node.material.wireframe;
-            }
-        } );
+            activeCam = persCam;
+            activeCam.resize();
             break;
         case 51: // key 3 - ball camera (perspective)
-            ;
+            activeCam = followBallCamera;
+            activeCam.resize();
             break;
         case 37: // key Left - move selected cannon angle left
             cannons.selectedLeftMovement();
@@ -110,6 +111,9 @@ function onKeyDown(e) {
             break;
         case 69: // key E & e - choose cannon 2
             cannons.select(2);
+            break;
+        case 82:
+            balls.axisShowHide();
             break;
     }
 }
