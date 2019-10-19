@@ -37,8 +37,8 @@ function createScene() {
     'use strict';
 
     scene = new THREE.Scene();
-    scene.add(new THREE.AxisHelper(5));
 
+    createFloor();
     createAllWalls(70, 0, 0);
 
     cannons = new cannonHandler();
@@ -82,7 +82,7 @@ function onKeyDown(e) {
     'use strict';
 
     switch(e.keyCode){
-        case 32:
+        case 32: // key space - shoot ball
             cannons.selectedShoot();
             break;
         case 49: // key 1 - top view camera (orthographic)
@@ -112,7 +112,7 @@ function onKeyDown(e) {
         case 69: // key E & e - choose cannon 2
             cannons.select(2);
             break;
-        case 82:
+        case 82: // key R & r - show hide balls axis
             balls.axisShowHide();
             break;
     }

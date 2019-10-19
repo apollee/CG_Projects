@@ -3,6 +3,8 @@ class FollowBallCamera extends THREE.PerspectiveCamera {
     constructor(ball) {
         super();
         this.ball = ball;
+
+        this.position.set(-20, 3, 10);
     }
 
     changeBall(ball) {
