@@ -1,8 +1,8 @@
 class TopCamera extends THREE.OrthographicCamera {
     
     constructor() {
-        var width = window.innerWidth / aspectratio;
-        var height = window.innerHeight / aspectratio;
+        var width = (window.innerWidth / aspectratio) / 7;
+        var height = (window.innerHeight / aspectratio) / 7;
         super(-width, width, height, -height, 1, 2000 );
         this.topView();
     }
@@ -17,8 +17,8 @@ class TopCamera extends THREE.OrthographicCamera {
     }
 
     resize() {
-        var width = window.innerWidth / aspectratio;
-        var height = window.innerHeight / aspectratio;
+        var width = (window.innerWidth / aspectratio) / 7;
+        var height = (window.innerHeight / aspectratio) / 7;
         this.left = -width;
         this.right = width;
         this.top = height;

@@ -5,8 +5,6 @@ class Cannon extends THREE.Object3D {
 
         this.name = "cannon" + n;
 
-        this.vector = new THREE.Vector3(0,0,0);
-
         var base = createCannonBase(this, 0, 0, 0, n);
         var tube = createCannonTube(base, 0, 3.5, 0, n);
         var hat = createCannonHat(tube, -10, 0, 0, n);
@@ -54,7 +52,7 @@ class Cannon extends THREE.Object3D {
     spinCannon() { 
         var deg = 0;
 
-        if ( this.right && !this.left )
+        if ( this.right && !this.left ) 
             deg = -Math.PI/50;
         
         else if ( !this.right && this.left )
@@ -64,7 +62,10 @@ class Cannon extends THREE.Object3D {
     }
 
     shoot() {
-        /* return created ball */
+        console.log( this.position);
+        var x = (this.rotation.x == 0) ? Math.cos(this.rotation.y) : -Math.cos(this.rotation.y);
+        var dir = new THREE.Vector3( x, 0, -Math.sin(this.rotation.y));
+        balls.addBall( new Ball(this.position.x, 3, this.position.z, dir) );
     }
 
     update() {

@@ -3,11 +3,16 @@ class ballsHandler {
     constructor() {
         this.balls = [];
 
+        this.axisVisibleState = true;
+
         for (var i = THREE.Math.randFloat(1, 6); i >= 0 ; i--)
-            this.addBall( new Ball(THREE.Math.randFloat(4, 46), 3, THREE.Math.randFloat( -24, 24), 2) );    
+            this.addBall( new Ball(THREE.Math.randFloat(4, 46), 3,
+                                   THREE.Math.randFloat( -24, 24),
+                                   new THREE.Vector3( 0, 0, 0) ) );    
     }
 
     addBall(ball) {
+        ball.axisShowHide(this.axisVisibleState);
         this.balls.push(ball);
         scene.add(ball);
     }
@@ -18,7 +23,8 @@ class ballsHandler {
     }
 
     axisShowHide() {
-        this.balls.forEach( ball => { ball.axisShowHide(); } );
+        this.axisVisibleState = !this.axisVisibleState;
+        this.balls.forEach( ball => { ball.axisShowHide( this.axisVisibleState ); } );
     }
 
     dealWithColisions() {
@@ -26,13 +32,11 @@ class ballsHandler {
     }
 
     update () {
-        //this.ball.forEach( ball => { ball.update(); } ); /* doesnt allow for removel */
-
-        this.dealWithColisions;
-
         for (var i = this.balls.length - 1; i >= 0; i--) {
             if ( !this.balls[i].update() )
                 this.removelBall(index); /* ball out of bounds */
         }
+
+        this.dealWithColisions();
     }
 }
