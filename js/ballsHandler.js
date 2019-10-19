@@ -5,6 +5,8 @@ class ballsHandler {
 
         this.axisVisibleState = true;
 
+        followBallCam = new FollowBallCamera();
+
         for (var i = THREE.Math.randFloat(1, 6); i >= 0 ; i--)
             this.addBall( new Ball(THREE.Math.randFloat(4, 46), 3,
                                    THREE.Math.randFloat( -24, 24),
@@ -15,6 +17,8 @@ class ballsHandler {
         ball.axisShowHide(this.axisVisibleState);
         this.balls.push(ball);
         scene.add(ball);
+
+        followBallCam.followBall(ball);
     }
 
     removeBall(index) {
@@ -34,7 +38,7 @@ class ballsHandler {
     update () {
         for (var i = this.balls.length - 1; i >= 0; i--) {
             if ( !this.balls[i].update() )
-                this.removelBall(index); /* ball out of bounds */
+                this.removeBall(i); /* ball out of bounds */
         }
 
         this.dealWithColisions();

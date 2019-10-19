@@ -62,7 +62,6 @@ class Cannon extends THREE.Object3D {
     }
 
     shoot() {
-        console.log( this.position);
         var x = (this.rotation.x == 0) ? Math.cos(this.rotation.y) : -Math.cos(this.rotation.y);
         var dir = new THREE.Vector3( x, 0, -Math.sin(this.rotation.y));
         balls.addBall( new Ball(this.position.x, 3, this.position.z, dir) );

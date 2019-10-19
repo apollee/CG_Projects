@@ -48,7 +48,6 @@ function createScene() {
 function createCameras() {
     topCam = new TopCamera();
     persCam = new PresCamera();
-    followBallCamera = new FollowBallCamera();
 
     activeCam = topCam;
 }
@@ -65,6 +64,7 @@ function animate() {
     time.updateTime();
     cannons.update();
     balls.update();
+    activeCam.update();
 
     render();
     requestAnimationFrame(animate);
@@ -94,7 +94,7 @@ function onKeyDown(e) {
             activeCam.resize();
             break;
         case 51: // key 3 - ball camera (perspective)
-            activeCam = followBallCamera;
+            activeCam = followBallCam;
             activeCam.resize();
             break;
         case 37: // key Left - move selected cannon angle left

@@ -28,9 +28,15 @@ class Ball extends THREE.Object3D { /* lacks attributes such as direction */
 
         else if ( this.direction.x != 0 && this.direction.z < 0 )
             this.rotateY( this.direction.angleTo(x_axis) );
-
-        console.log(this.direction.angleTo(x_axis));
 	}
+
+    getDirection() {
+        return this.direction
+    }
+
+    getPosition() {
+        return this.position;
+    }
 
     axisShowHide(visibleState) {
         this.axis.visible = visibleState;
@@ -46,8 +52,8 @@ class Ball extends THREE.Object3D { /* lacks attributes such as direction */
     }
 
     update() {  /* needs to check if its out of bounds and colisions */
-        this.move();
         this.speed *= .995;
-        return true;
+        this.move();
+        return -500 < this.position.x < 500 && -500 < this.position.z < 500;
     }
 }

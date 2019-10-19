@@ -1,18 +1,23 @@
 class FollowBallCamera extends THREE.PerspectiveCamera {
-
-    constructor(ball) {
+    constructor() {
         super();
-        this.ball = ball;
-
-        this.position.set(-20, 3, 10);
     }
 
-    changeBall(ball) {
+    followBall(ball) {
         this.ball = ball;
+
+        this.update();        
     }
 
     update() {
-        
+        var ballPos = this.ball.getPosition();
+        var ballDir = this.ball.getDirection();
+
+        this.position.set(ballPos.x - ballDir.x*10,
+                          ballPos.y - ballDir.y*10,
+                          ballPos.z - ballDir.z*10 )
+
+        this.lookAt(ballPos);
     }
 
     resize() {
