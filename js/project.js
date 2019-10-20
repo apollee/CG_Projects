@@ -64,7 +64,7 @@ function animate() {
     time.updateTime();
     cannons.update();
     balls.update();
-    activeCam.update();
+    activeCam.update();1
 
     render();
     requestAnimationFrame(animate);
