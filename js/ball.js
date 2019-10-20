@@ -33,8 +33,7 @@ class Ball extends THREE.Object3D { /* lacks attributes such as direction */
 
         this.rotateY( this.angle );
 
-        this.dirChangedX = false;
-        this.dirChangedZ = false;
+        this.dirChanged = false;
 	}
 
     getDirection() {
@@ -54,16 +53,12 @@ class Ball extends THREE.Object3D { /* lacks attributes such as direction */
         this.mesh.rotateZ( -this.speed * time.getTimeDiff() /10 );
     }
 
-    directionChangedX() {
-        this.dirChangedX = true;
-    }
-
-    directionChangedZ() {
-        this.dirChangedZ = true;
+    directionChanged() {
+        this.dirChanged = true;
     }
 
     rotToDir() {
-        if ( !this.dirChangedX && !this.dirChangedZ ) return;
+        if ( !this.dirChanged ) return;
 
         this.rotateY( -this.angle );
 
@@ -74,12 +69,11 @@ class Ball extends THREE.Object3D { /* lacks attributes such as direction */
         this.angle = newAngle;
         this.rotateY( this.angle );
 
-        this.dirChangedX = false;
-        this.dirChangedZ = false;
+        this.dirChanged = false;
     }
 
     update() {   //needs to check if its out of bounds and colisions 
-        this.speed *= 0.995;
+        this.speed *= 0.999;
         this.move();
         return -100 < this.position.x && this.position.x < 100
             && -100 < this.position.z && this.position.z < 100;
