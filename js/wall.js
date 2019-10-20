@@ -4,8 +4,8 @@ function createAllWalls(x, y, z) {
     var wall = new THREE.Object3D();
 
     createFrontWall(wall, 0, 0, 0); // wall referencial origin
-    createSideWall(wall, -42, 0,  38);
-    createSideWall(wall, -42, 0, -38);
+    createSideWall(wall, -52, 0,  38);
+    createSideWall(wall, -52, 0, -38);
 
     wall.position.set(x, y, z);
 
@@ -15,7 +15,7 @@ function createAllWalls(x, y, z) {
 function createFrontWall(obj, x, y, z) {
     'use strict';
 
-    var material = new THREE.MeshBasicMaterial({color: '#aaaaaa', wireframe: true});
+    var material = new THREE.MeshBasicMaterial({color: '#2D3047', wireframe: true});
     var geometry = new THREE.BoxGeometry(4, 8, 80, 4, 8, 80);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y+4, z);
@@ -25,8 +25,8 @@ function createFrontWall(obj, x, y, z) {
 function createSideWall(obj, x, y, z) {
     'use strict';
 
-    var material = new THREE.MeshBasicMaterial({color: '#1e2c3e', wireframe: true});
-    var geometry = new THREE.BoxGeometry(80, 8, 4, 80, 8, 4);
+    var material = new THREE.MeshBasicMaterial({color: '#2D3047', wireframe: true});
+    var geometry = new THREE.BoxGeometry(100, 8, 4, 80, 8, 4);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y+4, z);
     obj.add(mesh);
@@ -37,7 +37,7 @@ function createFloor() {
 
     var floor = new THREE.Group();
 
-    var material = new THREE.MeshBasicMaterial({color: '#aaaaaa', wireframe: true});
+    var material = new THREE.MeshBasicMaterial({color: '#FB8B24', wireframe: true});
     var geometry = new THREE.PlaneGeometry(110, 72, 33, 21);
     var mesh = new THREE.Mesh(geometry, material);
 

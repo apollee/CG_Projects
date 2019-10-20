@@ -42,11 +42,11 @@ class Cannon extends THREE.Object3D {
         this.stopLeftMovement();
         this.stopRightMovement();
 
-        this.tubeCylColor.setStyle('#4e635a');
+        this.tubeCylColor.setStyle('#75875D');
     }
 
     select() {
-        this.tubeCylColor.setStyle('#5c4f4f');
+        this.tubeCylColor.setStyle('#6E8894');
     }
 
     spinCannon() { 

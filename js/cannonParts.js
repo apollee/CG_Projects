@@ -112,7 +112,7 @@ function createCannonWheelCylinder(obj, x, y, z, n) {
 function createCannonTubeCyl(obj, x, y, z, n) {
     'use strict';
 
-    var material = new THREE.MeshBasicMaterial({color: '#4e635a', wireframe: true});
+    var material = new THREE.MeshBasicMaterial({color: '#75875D', wireframe: true});
     var geometry = new THREE.CylinderGeometry(3, 3, 20, 30, 20);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.set(-Math.PI/2, 0, -Math.PI/2);
