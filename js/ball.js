@@ -73,8 +73,9 @@ class Ball extends THREE.Object3D { /* lacks attributes such as direction */
     }
 
     update() {   //needs to check if its out of bounds and colisions 
-        this.speed *= 0.999;
-        this.move();
+        console.log(1-time.getTimeDiff()/860);
+        this.speed *= 1 - time.getTimeDiff()/1200;
+        this.move();  
         return -100 < this.position.x && this.position.x < 100
             && -100 < this.position.z && this.position.z < 100;
     }
