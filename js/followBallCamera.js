@@ -10,14 +10,19 @@ class FollowBallCamera extends THREE.PerspectiveCamera {
     }
 
     update() {
-        if (this.ball == undefined) return;
-
         var ballPos = this.ball.getPosition();
         var ballDir = this.ball.getDirection();
 
-        this.position.set(ballPos.x - ballDir.x*10,
-                          ballPos.y - ballDir.y*10,
-                          ballPos.z - ballDir.z*10 )
+        if(ballDir.x !=0 || ballDir.y != 0 || ballDir.z != 0){
+            this.position.set(ballPos.x - ballDir.x*10,
+                              ballPos.y - ballDir.y*10,
+                              ballPos.z - ballDir.z*10 )
+        }
+        else{
+            this.position.set(ballPos.x - 10,
+                              ballPos.y - ballDir.y*10,
+                              ballPos.z - 10 )
+        }
 
         this.lookAt(ballPos);
     }
