@@ -19,9 +19,9 @@ class FollowBallCamera extends THREE.PerspectiveCamera {
                               ballPos.z - ballDir.z*10 )
         }
         else{
-            this.position.set(ballPos.x - 10,
+            this.position.set(ballPos.x - Math.sin(this.ball.angle)*10,
                               ballPos.y - ballDir.y*10,
-                              ballPos.z - 10 )
+                              ballPos.z - Math.cos(this.ball.angle)*10)
         }
 
         this.lookAt(ballPos);
