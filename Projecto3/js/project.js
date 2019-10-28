@@ -68,8 +68,6 @@ function onKeyDown(e) {
 
     switch(e.keyCode){
         case 49: // key 1 - turn on/off spotlight 1
-            activeCam = ortoCam;
-            activeCam.resize();
             break;
         case 50: // key 2 - turn on/off spotlight 2
             scene.traverse( function (node) {
@@ -82,9 +80,13 @@ function onKeyDown(e) {
             break;
         case 52: // key 4 - turn on/off spotlight 4
             break;
-        case 37: // key 5 - top camera view
+        case 53: // key 5 - top camera view
+            activeCam = presCam;
+            presCam.resize();
             break;
-        case 39: // key 6 - painting camera 
+        case 54: // key 6 - painting camera 
+            activeCam = ortoCam;
+            activeCam.resize();
             break;
         case 81: // key Q & q - turn on/off light source
             break;
@@ -97,6 +99,5 @@ function onKeyDown(e) {
 
 function onKeyUp(e) {
     'use strict';
-
     /*vejam se acham que vale a pena ter keyup neste projeto*/
 }
