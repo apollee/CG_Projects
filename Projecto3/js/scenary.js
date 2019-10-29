@@ -88,3 +88,9 @@ function createPedestal(x, y, z) {
 
     scene.add(pedestal);
 }
+
+function createPicture(x, y, z) {
+    'use strict'
+
+    
+}
