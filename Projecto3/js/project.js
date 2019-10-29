@@ -31,6 +31,7 @@ function createScene() {
 
     createFloor();
     createAllWalls(0, 0, 0);
+    createPedestal(45, -66, 35);
 }
 
 function createCameras() {
