@@ -3,6 +3,7 @@ var scene, renderer, aspectratio;
 var presCam;
 var ortoCam;
 var activeCam;
+var frame;
 
 function init() {
     'use strict'
@@ -31,14 +32,15 @@ function createScene() {
 
     createFloor();
     createAllWalls(0, 0, 0);
-    createPedestal(45, -66, 35);
+    frame = createPaintingFrame(-30, 200, 0);
+    createPedestal(40, 10, 50);
 }
 
 function createCameras() {
-    ortoCam = new OrtoCamera();
+    ortoCam = new OrtoCamera(frame.position);
     presCam = new PresCamera();
 
-    activeCam = presCam;
+    activeCam = ortoCam;
 }
 
 function render() {
