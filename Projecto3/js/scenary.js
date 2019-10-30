@@ -13,7 +13,7 @@ function createAllWalls(x, y, z) {
 function createFrontWall(obj, x, y, z) {
     'use strict';
 
-    var material = new THREE.MeshBasicMaterial({color: '#5C5C5C', wireframe: true});
+    var material = new THREE.MeshBasicMaterial({color: '#5C5C5C'});
     var geometry = new THREE.BoxGeometry(10000, 1000, 1, 100, 10);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
@@ -25,7 +25,7 @@ function createFloor() {
     'use strict';
 
     var floor = new THREE.Group();
-    var material = new THREE.MeshBasicMaterial({color: '#d2b48c', wireframe: true});
+    var material = new THREE.MeshBasicMaterial({color: '#d2b48c'});
     var geometry = new THREE.BoxGeometry(5000, 1000, 1, 50, 10);
     var mesh = new THREE.Mesh(geometry, material);
 
@@ -42,7 +42,7 @@ function createPedestal(x, y, z) {
     'use strict'
 
     var pedestal = new THREE.Group();
-    var material = new THREE.MeshBasicMaterial({color: '#ecd7b8', wireframe: true});
+    var material = new THREE.MeshBasicMaterial({color: '#ecd7b8'});
     var geometry = new THREE.CylinderGeometry(60, 60, 20, 30);
     var mesh = new THREE.Mesh(geometry, material);
 
