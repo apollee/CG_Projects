@@ -32,7 +32,7 @@ function createScene() {
 
     createFloor();
     createAllWalls(0, 0, 0);
-    frame = createPaintingFrame(-30, 200, 0);
+    frame = createPaintingFrame(-200, 200, 0);
     createPedestal(40, 10, 50);
 }
 
@@ -40,7 +40,7 @@ function createCameras() {
     ortoCam = new OrtoCamera(frame.position);
     presCam = new PresCamera();
 
-    activeCam = ortoCam;
+    activeCam = presCam;
 }
 
 function render() {

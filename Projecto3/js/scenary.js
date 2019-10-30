@@ -14,7 +14,7 @@ function createFrontWall(obj, x, y, z) {
     'use strict';
 
     var material = new THREE.MeshBasicMaterial({color: '#5C5C5C', wireframe: true});
-    var geometry = new THREE.BoxGeometry(1000, 1000, 1, 33, 22);
+    var geometry = new THREE.BoxGeometry(10000, 1000, 1, 100, 10);
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(x, y, z);
     obj.add(mesh);
@@ -26,7 +26,7 @@ function createFloor() {
 
     var floor = new THREE.Group();
     var material = new THREE.MeshBasicMaterial({color: '#d2b48c', wireframe: true});
-    var geometry = new THREE.BoxGeometry(5000, 1000, 1, 33, 22);
+    var geometry = new THREE.BoxGeometry(5000, 1000, 1, 50, 10);
     var mesh = new THREE.Mesh(geometry, material);
 
     mesh.rotateX(Math.PI/2);

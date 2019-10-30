@@ -58,7 +58,7 @@ function createCircles(frame) {
     for (var i = 0; i < 8; i++, y += 16) {
         var x = -96;
         for (var j = 0; j < 13; j++, x += 16)
-            ilusionCircle(frame, x, y, 2);
+            ilusionCircle(frame, x, y, 1);
     }
 }
 
@@ -78,7 +78,7 @@ function verticalStripe(frame, x, y, z) {
     'use strict'
 
     var material = new THREE.MeshBasicMaterial({color: '#d1c9c9', wireframe: true});
-    var geometry = new THREE.BoxGeometry(4, 129, 2, 2, 65);
+    var geometry = new THREE.BoxGeometry(4, 130, 2, 2, 65);
     var mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(x,y,z);
@@ -89,10 +89,9 @@ function ilusionCircle(frame, x, y, z) {
     'use strict'
 
     var material = new THREE.MeshBasicMaterial({color: '#ffffff', wireframe: true});
-    var geometry = new THREE.CylinderGeometry(2.8284, 2.8284, 4, 20);
+    var geometry = new THREE.CylinderGeometry(2.8284, 2.8284, 2, 20);
     var mesh = new THREE.Mesh(geometry, material);
 
-    mesh.rotateX(-Math.PI/8-Math.PI/16);
     mesh.rotateX(Math.PI/2);
     mesh.position.set(x,y,z);
     frame.add(mesh);
