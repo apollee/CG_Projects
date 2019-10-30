@@ -5,7 +5,7 @@ class OrtoCamera extends THREE.OrthographicCamera {
         var height = (window.innerHeight / aspectratio) / 7;
         super(-width, width, height, -height, 1, 2000 );
         this.position.set(-30, window.innerHeight/2, 500);
-        this.lookAt(frame.position);
+        this.lookAt(frame_position);
     }
 
     resize() {
