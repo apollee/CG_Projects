@@ -50,13 +50,19 @@ function createLightBulb(x, y, z, rotZ) {
 
     var bulb = new THREE.Object3D();
 
-    var material = new THREE.MeshBasicMaterial({color: '#555626'});
+    var materials = [ new THREE.MeshBasicMaterial({color: '#555626'}),
+                      new THREE.MeshLambertMaterial({color: '#555626'}),
+                      new THREE.MeshPhongMaterial({color: '#555626'}) 
+                    ]
     var geometry = new THREE.ConeGeometry(20, 35, 32, 1, true);
-    var cone = new THREE.Mesh(geometry, material);
+    var cone = new smartMesh(geometry, materials);
 
-    material = new THREE.MeshBasicMaterial({color: '#132456'});
+    var materials = [ new THREE.MeshBasicMaterial({color: '#132456'}),
+                      new THREE.MeshLambertMaterial({color: '#132456'}),
+                      new THREE.MeshPhongMaterial({color: '#132456'}) 
+                    ]
     geometry = new THREE.SphereGeometry(20, 32, 32);
-    var ball = new THREE.Mesh(geometry, material);
+    var ball = new smartMesh(geometry, materials);
 
     cone.position.y = 25;
 

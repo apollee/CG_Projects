@@ -20,9 +20,12 @@ class icosahedron extends THREE.Object3D {
              4, 9, 5,   2, 4, 11,   6, 2, 10,   8, 6, 7,    9, 8, 1
         ];
 
-        var material = new THREE.MeshLambertMaterial({color: '#11aa33'});
+        var materials = [ new THREE.MeshBasicMaterial({color: '#11aa33'}),
+                          new THREE.MeshLambertMaterial({color: '#11aa33'}),
+                          new THREE.MeshPhongMaterial({color: '#11aa33'}) 
+                        ]
         var geometry = new THREE.PolyhedronGeometry( vertices, indices, 60, 0);
-        var mesh = new THREE.Mesh(geometry, material);
+        var mesh = new smartMesh(geometry, materials);
 
         this.add(mesh);
 

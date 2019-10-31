@@ -20,9 +20,12 @@ function createPaintingFrame(x, y, z) {
 function createFrameWood(obj, width, height, x, y, z) {
     'use strict'
 
-    var material = new THREE.MeshBasicMaterial({color: '#cd853f'});
+    var materials = [ new THREE.MeshBasicMaterial({color: '#cd853f'}),
+                      new THREE.MeshLambertMaterial({color: '#cd853f'}),
+                      new THREE.MeshPhongMaterial({color: '#cd853f'}) 
+                    ]
     var geometry = new THREE.BoxGeometry(width, height, 2, width/2, height/2);
-    var mesh = new THREE.Mesh(geometry, material);
+    var mesh = new smartMesh(geometry, materials);
 
     mesh.position.set(x,y,z);
     obj.add(mesh);
@@ -31,9 +34,12 @@ function createFrameWood(obj, width, height, x, y, z) {
 function createPainting(frame) {
     'use strict'
 
-    var material = new THREE.MeshBasicMaterial({color: '#000000'});
+    var materials = [ new THREE.MeshBasicMaterial({color: '#000000'}),
+                      new THREE.MeshLambertMaterial({color: '#000000'}),
+                      new THREE.MeshPhongMaterial({color: '#000000'}) 
+                    ]
     var geometry = new THREE.PlaneGeometry(210, 140, 100, 70);
-    var mesh = new THREE.Mesh(geometry, material);
+    var mesh = new smartMesh(geometry, materials);
 
     mesh.position.z = 1;
 
@@ -66,9 +72,12 @@ function createCircles(frame) {
 function horizontalStripe(frame, x, y, z) {
     'use strict'
 
-    var material = new THREE.MeshBasicMaterial({color: '#d1c9c9'});
+    var materials = [ new THREE.MeshBasicMaterial({color: '#d1c9c9'}),
+                      new THREE.MeshLambertMaterial({color: '#d1c9c9'}),
+                      new THREE.MeshPhongMaterial({color: '#d1c9c9'}) 
+                    ]
     var geometry = new THREE.BoxGeometry(210, 4, 2, 100, 2);
-    var mesh = new THREE.Mesh(geometry, material);
+    var mesh = new smartMesh(geometry, materials);
 
     mesh.position.set(x,y,z);
     frame.add(mesh);
@@ -77,9 +86,12 @@ function horizontalStripe(frame, x, y, z) {
 function verticalStripe(frame, x, y, z) {
     'use strict'
 
-    var material = new THREE.MeshBasicMaterial({color: '#d1c9c9'});
+    var materials = [ new THREE.MeshBasicMaterial({color: '#d1c9c9'}),
+                      new THREE.MeshLambertMaterial({color: '#d1c9c9'}),
+                      new THREE.MeshPhongMaterial({color: '#d1c9c9'}) 
+                    ]
     var geometry = new THREE.BoxGeometry(4, 130, 2, 2, 65);
-    var mesh = new THREE.Mesh(geometry, material);
+    var mesh = new smartMesh(geometry, materials);
 
     mesh.position.set(x,y,z);
     frame.add(mesh);
@@ -88,9 +100,12 @@ function verticalStripe(frame, x, y, z) {
 function ilusionCircle(frame, x, y, z) {
     'use strict'
 
-    var material = new THREE.MeshBasicMaterial({color: '#ffffff'});
+    var materials = [ new THREE.MeshBasicMaterial({color: '#ffffff'}),
+                      new THREE.MeshLambertMaterial({color: '#ffffff'}),
+                      new THREE.MeshPhongMaterial({color: '#ffffff'}) 
+                    ]
     var geometry = new THREE.CylinderGeometry(2.8284, 2.8284, 2, 20);
-    var mesh = new THREE.Mesh(geometry, material);
+    var mesh = new smartMesh(geometry, materials);
 
     mesh.rotateX(Math.PI/2);
     mesh.position.set(x,y,z);
