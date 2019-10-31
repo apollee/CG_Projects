@@ -33,7 +33,6 @@ function createScene() {
     'use strict';
 
     scene = new THREE.Scene();
-    var icosaedro = new Icosaedro(-80, 150, 180);
     createFloor();
     createAllWalls(0, 0, 0);
     
