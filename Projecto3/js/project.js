@@ -103,9 +103,10 @@ function onKeyDown(e) {
             globLight.onOffSwitch();
             break;
         case 87: // key W & w - activate/deactivate illumination calculation
-            globLight.illuminationSwitch();
+            // allMeshes .turnOnOffIlumination()
             break;
         case 69: // key E & e - alternate between the shading type
+            // allMeshes .changeShadingType()
             break;
     }
 }

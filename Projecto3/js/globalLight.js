@@ -22,8 +22,4 @@ class globalLight extends THREE.DirectionalLight {
         this.on = !this.on
     }
 
-    illuminationSwitch() {
-        this.castShadow = !this.castShadow
-    }
-
 }
