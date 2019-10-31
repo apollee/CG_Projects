@@ -103,10 +103,16 @@ function onKeyDown(e) {
             globLight.onOffSwitch();
             break;
         case 87: // key W & w - activate/deactivate illumination calculation
-            // allMeshes .turnOnOffIlumination()
+            scene.traverse( function (node) {
+                if (node instanceof smartMesh)
+                    node.turnOnOffIlumination();
+            } );
             break;
         case 69: // key E & e - alternate between the shading type
-            // allMeshes .changeShadingType()
+            scene.traverse( function (node) {
+                if (node instanceof smartMesh)
+                    node.changeShadingType();
+            } );
             break;
     }
 }
