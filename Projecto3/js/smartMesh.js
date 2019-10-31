@@ -27,4 +27,5 @@ class smartMesh extends THREE.Mesh {
             this.material = this.allMaterials[this.shadeMaterial_i]
 
         this.on = !this.on
+    }
 }

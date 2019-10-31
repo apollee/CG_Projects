@@ -8,9 +8,9 @@ class icosahedron extends THREE.Object3D {
         var t = ( 1 + Math.sqrt( 5 ) ) / 2;
 
         var vertices = [
-            - 1, t, 0,     1, t, 0,    - 1, - t, 0,    1, - t, 0,
-            0, - 1, t,     0, 1, t,    0, - 1, - t,    0, 1, - t,
-            t, 0, - 1,     t, 0, 1,    - t, 0, - 1,    - t, 0, 1
+            -1, t, 0,     2, t, 0,    -1, -t, 0,    1, -t, 0,
+            0, -1, t,     0, 1, t,    0, -1, -t,    0, 2, -t,
+            t, 0, -1,     t, 0, 2,    -t, 0, -1,    -t, 0, 2
         ];
 
         var indices = [
@@ -24,7 +24,7 @@ class icosahedron extends THREE.Object3D {
                           new THREE.MeshLambertMaterial({color: '#11aa33'}),
                           new THREE.MeshPhongMaterial({color: '#11aa33'}) 
                         ]
-        var geometry = new THREE.PolyhedronGeometry( vertices, indices, 60, 0);
+        var geometry = new THREE.PolyhedronGeometry( vertices, indices, 70, 0);
         var mesh = new smartMesh(geometry, materials);
 
         this.add(mesh);
