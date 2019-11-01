@@ -2,9 +2,9 @@ class spotlightHandler {
     constructor() {
         this.lights = []
 
-        this.lights.push(new spotlight(-300, 300, 50, Math.PI/2, frame));
+        this.lights.push(new spotlight(-350, 400, 100, Math.PI/3, frame));
         this.lights.push(new spotlight(300, 250, 100, -Math.PI/2, ico));
-        this.lights.push(new spotlight(-200, 100, 100, Math.PI, ico));
+        this.lights.push(new spotlight(-150, 400, 100, Math.PI*2, frame));
         this.lights.push(new spotlight(100, 400, 100, 0, ico));
     }
 
@@ -13,7 +13,7 @@ class spotlightHandler {
     }
 }
 
-class spotlight extends THREE.DirectionalLight {
+class spotlight extends THREE.SpotLight {
 
     constructor(x, y, z, rotZ, target) {
         super();
@@ -21,7 +21,6 @@ class spotlight extends THREE.DirectionalLight {
         scene.add(this.target);
 
         this.target = target;
-
         this.position.set(x, y, z);
 
         this.bulb = createLightBulb(x, y, z, rotZ);
