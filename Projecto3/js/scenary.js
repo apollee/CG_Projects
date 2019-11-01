@@ -48,9 +48,9 @@ function createPedestal(x, y, z) {
     'use strict'
 
     var pedestal = new THREE.Group();
-    var materials = [ new THREE.MeshBasicMaterial({color: '#8cd7c8'}),
-                      new THREE.MeshLambertMaterial({color: '#8cd7c8'}),
-                      new THREE.MeshPhongMaterial({color: '#8cd7c8'}) 
+    var materials = [ new THREE.MeshBasicMaterial({color: '#DD614A'}),
+                      new THREE.MeshLambertMaterial({color: '#DD614A'}),
+                      new THREE.MeshPhongMaterial({color: '#DD614A'}) 
                     ]
     var geometry = new THREE.CylinderGeometry(60, 60, 20, 30);
     var mesh = new smartMesh(geometry, materials);
