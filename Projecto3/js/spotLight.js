@@ -2,10 +2,10 @@ class spotlightHandler {
     constructor() {
         this.lights = []
 
-        this.lights.push(new spotlight(-350, 400, 100, Math.PI/3, frame));
-        this.lights.push(new spotlight(300, 250, 100, -Math.PI/2, ico));
-        this.lights.push(new spotlight(-150, 400, 100, Math.PI*2, frame));
-        this.lights.push(new spotlight(100, 400, 100, 0, ico));
+        this.lights.push(new spotlight(-250, 400, 100, Math.PI*2, frame));
+        this.lights.push(new spotlight(350, 250, 100, -Math.PI/2.7, ico));
+        this.lights.push(new spotlight(-60, 400, 100, Math.PI*2, frame));
+        this.lights.push(new spotlight(150, 250, 100, 0, ico));
     }
 
     onOffSwitch(index) {
@@ -49,18 +49,18 @@ function createLightBulb(x, y, z, rotZ) {
 
     var bulb = new THREE.Object3D();
 
-    var materials = [ new THREE.MeshBasicMaterial({color: '#555626'}),
-                      new THREE.MeshLambertMaterial({color: '#555626'}),
-                      new THREE.MeshPhongMaterial({color: '#555626'}) 
+    var materials = [ new THREE.MeshBasicMaterial({color: '#7A7977'}),
+                      new THREE.MeshLambertMaterial({color: '#7A7977'}),
+                      new THREE.MeshPhongMaterial({color: '#7A7977'}) 
                     ]
-    var geometry = new THREE.ConeGeometry(20, 35, 32, 1, true);
+    var geometry = new THREE.ConeGeometry(10, 35, 32, 1, true);
     var cone = new smartMesh(geometry, materials);
 
-    var materials = [ new THREE.MeshBasicMaterial({color: '#132456'}),
-                      new THREE.MeshLambertMaterial({color: '#132456'}),
-                      new THREE.MeshPhongMaterial({color: '#132456'}) 
+    var materials = [ new THREE.MeshBasicMaterial({color: '#E2D6AC'}),
+                      new THREE.MeshLambertMaterial({color: '#E2D6AC'}),
+                      new THREE.MeshPhongMaterial({color: '#E2D6AC'}) 
                     ]
-    geometry = new THREE.SphereGeometry(20, 32, 32);
+    geometry = new THREE.SphereGeometry(13, 32, 32);
     var ball = new smartMesh(geometry, materials);
 
     cone.position.y = 25;
