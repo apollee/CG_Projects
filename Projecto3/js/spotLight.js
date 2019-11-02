@@ -2,10 +2,10 @@ class spotlightHandler {
     constructor() {
         this.lights = []
 
-        this.lights.push(new spotlight(-250, 400, 100, Math.PI*2, frame));
-        this.lights.push(new spotlight(350, 250, 100, -Math.PI/2.7, ico));
-        this.lights.push(new spotlight(-60, 400, 100, Math.PI*2, frame));
-        this.lights.push(new spotlight(150, 250, 100, 0, ico));
+        this.lights.push(new spotlight(-250, 400, 100,    Math.PI*2, frame));
+        this.lights.push(new spotlight( -60, 400, 100,    Math.PI*2, frame));
+        this.lights.push(new spotlight( 150, 250, 100,            0,  ico));
+        this.lights.push(new spotlight( 350, 250, 100, -Math.PI/2.7,  ico));
     }
 
     onOffSwitch(index) {
@@ -16,7 +16,7 @@ class spotlightHandler {
 class spotlight extends THREE.SpotLight {
 
     constructor(x, y, z, rotZ, target) {
-        super();
+        super(0xffffff, 1, 750, Math.PI/6, 1);
 
         scene.add(this.target);
 
@@ -37,11 +37,6 @@ class spotlight extends THREE.SpotLight {
 
         this.on = !this.on
     }
-
-    illuminationSwitch() {
-        this.castShadow = !this.castShadow
-    }
-
 }
 
 function createLightBulb(x, y, z, rotZ) {

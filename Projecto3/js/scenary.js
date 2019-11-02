@@ -17,7 +17,7 @@ function createFrontWall(obj, x, y, z) {
                       new THREE.MeshLambertMaterial({color: '#5C5C5C'}),
                       new THREE.MeshPhongMaterial({color: '#5C5C5C'}) 
                     ]
-    var geometry = new THREE.BoxGeometry(10000, 1000, 1, 100, 10);
+    var geometry = new THREE.BoxGeometry(10000, 1000, 1, 200, 20);
     var mesh = new smartMesh(geometry, materials);
     mesh.position.set(x, y, z);
     obj.add(mesh);
@@ -32,7 +32,7 @@ function createFloor() {
                       new THREE.MeshLambertMaterial({color: '#d2b48c'}),
                       new THREE.MeshPhongMaterial({color: '#d2b48c'}) 
                     ]
-    var geometry = new THREE.BoxGeometry(5000, 1000, 1, 50, 10);
+    var geometry = new THREE.BoxGeometry(5000, 1000, 1, 100, 20);
     var mesh = new smartMesh(geometry, materials);
 
     mesh.rotateX(Math.PI/2);

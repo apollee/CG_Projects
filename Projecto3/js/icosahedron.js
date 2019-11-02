@@ -24,7 +24,7 @@ class icosahedron extends THREE.Object3D {
                           new THREE.MeshLambertMaterial({color: '#3FA7D6'}),
                           new THREE.MeshPhongMaterial({color: '#3FA7D6'}) 
                         ]
-        var geometry = new THREE.PolyhedronGeometry( vertices, indices, 70, 0);
+        var geometry = new THREE.PolyhedronGeometry( vertices, indices, 60, 0);
         var mesh = new smartMesh(geometry, materials);
 
         this.add(mesh);
