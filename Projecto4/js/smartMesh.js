@@ -4,11 +4,11 @@ class smartMesh extends THREE.Mesh {
     constructor(geometry, materials) {
         'use strict'
 
-        super(geometry, materials[1]);
+        super(geometry, materials[0]);
 
         this.allMaterials = materials;
-        this.on = true;
-        this.shadeMaterial_i = 1;
+        this.on = false;
+        this.shadeMaterial_i = 0;
 
         smartMeshes.push(this);
     }

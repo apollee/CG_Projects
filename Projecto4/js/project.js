@@ -25,7 +25,6 @@ function init() {
 
 
     window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyUp);
     window.addEventListener("resize", onResize);
 }
 
@@ -33,13 +32,15 @@ function createScene() {
     'use strict';
 
     scene = new THREE.Scene();
-    
-    globLight = new globalLight(ico);
-    spotLHandler = new spotlightHandler()
+    createBoard();
+    createDice(7,35,7);
+    createBall(-7, 20, 45);
+    //globLight = new globalLight(ico);
+    //spotLHandler = new spotlightHandler()
 }
 
 function createCameras() {
-    ortoCam = new OrtoCamera(frame.position);
+    //ortoCam = new OrtoCamera(frame.position);
     presCam = new PresCamera();
 
     activeCam = presCam;
@@ -61,6 +62,7 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
+//needs to be changed
 function onResize() {
     'use strict';
     
@@ -74,10 +76,10 @@ function onKeyDown(e) {
     switch(e.keyCode){
         case 53: // key 5 - top camera view
             activeCam = presCam;
-            presCam.resize();
+            activeCam.resize();
             break;
         case 54: // key 6 - painting camera 
-            activeCam = ortoCam;
+            //activeCam = ortoCam;
             activeCam.resize();
             break;
         case 68: // key D & d - turn on/off directional light source
