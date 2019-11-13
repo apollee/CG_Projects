@@ -1,6 +1,6 @@
 var time;
 
-var scene, renderer, aspectratio;
+var scene, renderer;
 
 var presCam, ortoCam, activeCam;
 
@@ -15,8 +15,6 @@ function init() {
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    
-    aspectratio = window.innerWidth / window.innerHeight;
 
     document.body.appendChild(renderer.domElement);
 
