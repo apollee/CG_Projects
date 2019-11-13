@@ -17,8 +17,6 @@ class OrtoCamera extends THREE.OrthographicCamera {
         this.bottom = -height;
         this.updateProjectionMatrix();
     }
-
-    update() {} /**/
 }
 
 class PresCamera extends THREE.PerspectiveCamera {
@@ -26,7 +24,7 @@ class PresCamera extends THREE.PerspectiveCamera {
     constructor() {
         super(90, window.innerWidth / window.innerHeight, 1, 1000);
 
-        this.position.set(0, 0, 100);
+        this.position.set(0, 50, 100);
         super.lookAt(new THREE.Vector3(0, 0,0));
     }
 
@@ -34,7 +32,5 @@ class PresCamera extends THREE.PerspectiveCamera {
         this.aspect = renderer.getSize().width / renderer.getSize().height;
         this.updateProjectionMatrix();
     }
-    
-    update() {} /**/
 }
 

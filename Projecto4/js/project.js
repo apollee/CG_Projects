@@ -1,13 +1,14 @@
+var time;
+
 var scene, renderer, aspectratio;
 
-var presCam;
-var ortoCam;
-var activeCam;
-var frame;
-var globLight;
+var presCam, ortoCam, activeCam;
+
+var gLight;
+var pLight;
+
 var dice;
 var ball;
-var spotLHandler;
 
 function init() {
     'use strict'
@@ -23,19 +24,21 @@ function init() {
     createCameras();
     render();
 
-
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("resize", onResize);
+
+    time = new timeProj();
 }
 
 function createScene() {
     'use strict';
 
     scene = new THREE.Scene();
-    var board = createBoard();
-    var dice = new Dice(0, 13, 0);
-    var ball = new Ball(80, 10, 0);
-    globLight = new globalLight();
+    createBoard();
+    dice = new Dice(0, 13, 0);
+    ball = new Ball(80, 10, 0);
+    pLight = new pointLight();
+    gLight = new globalLight();
 }
 
 function createCameras() {
@@ -54,8 +57,12 @@ function render() {
 function animate() {
     'use strict'
 
-    //time.updateTime();
-    activeCam.update();
+    time.updateTime();
+
+    if ( !time.isFreezed() ) {
+        dice.spin();
+        ball.dualSpin();
+    }
 
     render();
     requestAnimationFrame(animate);
@@ -82,19 +89,24 @@ function onKeyDown(e) {
             activeCam.resize();
             break;
         case 68: // key D & d - turn on/off directional light source
+            gLight.onOffSwitch();
             break;
         case 80: // key P & p - turn on/off pontual light source
+            pLight.onOffSwitch();
             break;
         case 76: // key L & l - activate/deactivate illumination calculation
-            smartMeshes.forEach( smesh => { smesh.turnOnOffIlumination(); } );
+            smartMeshes.forEach( smesh => { smesh.turnOnOffIlumination(); } ); /// ?!?!??!?!?!?!?!?!?!? change !?!?!??!?!?!?!?
             break;
         case 87: // key W & w - active/desactive wireframe 
             break;
         case 66: // key B & b - ball movement
+            ball.toggleAcelaration();
             break;
         case 82: // key R & r - reset scene
+
             break;
         case 83: // key S & s - stop scene
+            time.freezeUnfreeze();
             break;
     }
 }
