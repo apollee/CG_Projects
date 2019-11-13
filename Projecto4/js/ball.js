@@ -17,6 +17,8 @@ class Ball extends THREE.Object3D {
         this.world = new THREE.Group();
         this.position.set(x, y, z);
 
+        this.startPos = {x:x, y:y ,z: z}
+
         this.world.add(this);
 
         scene.add(this.world);
@@ -38,7 +40,7 @@ class Ball extends THREE.Object3D {
         this.speed += this.acelaration;
 
         if (this.speed < 0) {
-            this. speed = 0;
+            this.speed = 0;
             this.acelaration = 0;
         }
         else if ( this.speed > 1 ) {
@@ -55,5 +57,14 @@ class Ball extends THREE.Object3D {
         else
             this.acelaration = -0.01;
 
+    }
+
+    reset() {
+        this.rotateY( this.rotation.x == 0 ? -this.rotation.y : Math.PI + this.rotation.y );
+        this.world.rotateY( this.world.rotation.x == 0 ? -this.world.rotation.y : Math.PI + this.world.rotation.y );
+
+        this.speed = 0;
+        this.acelarationPos = false; 
+        this.acelaration = 0;
     }
 }

@@ -19,6 +19,10 @@ class globalLight extends THREE.DirectionalLight {
 
         this.on = !this.on
     }
+
+    reset() {
+        if (!this.on) this.onOffSwitch();
+    }
 }
 
 class pointLight extends THREE.PointLight {
@@ -40,6 +44,10 @@ class pointLight extends THREE.PointLight {
             scene.add(this);
 
         this.on = !this.on
+    }
+
+    reset() {
+        if (!this.on) this.onOffSwitch();
     }
 }
 

@@ -30,7 +30,7 @@ class Dice extends THREE.Object3D {
     }
 
     reset() {
-
+        this.rotateY( this.rotation.x == 0 ? -this.rotation.y : Math.PI + this.rotation.y );
     }
 
 }

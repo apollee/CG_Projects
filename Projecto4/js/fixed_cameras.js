@@ -28,7 +28,7 @@ class PresCamera extends THREE.PerspectiveCamera {
     constructor() {
         super(90, window.innerWidth / window.innerHeight, 1, 1000);
 
-        this.position.set(0, 50, 100);
+        this.position.set(-10, 65, 120);
         super.lookAt(new THREE.Vector3(0, 0,0));
     }
 
