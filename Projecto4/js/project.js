@@ -64,6 +64,12 @@ function animate() {
         ball.dualSpin();
     }
 
+    if (toggleIlumination) smartMeshes.forEach( smesh => { smesh.turnOnOffIlumination(); } );
+    if (toggleWireframe) allMaterials.forEach( material => { material.wireframe = !material.wireframe; } );
+
+    toggleWireframe = false;
+    toggleIlumination = false;
+
     render();
     requestAnimationFrame(animate);
 }
@@ -95,9 +101,10 @@ function onKeyDown(e) {
             pLight.onOffSwitch();
             break;
         case 76: // key L & l - activate/deactivate illumination calculation
-            smartMeshes.forEach( smesh => { smesh.turnOnOffIlumination(); } ); /// ?!?!??!?!?!?!?!?!?!? change !?!?!??!?!?!?!?
+            toggleIlumination = true;
             break;
         case 87: // key W & w - active/desactive wireframe 
+        toggleWireframe = true;
             break;
         case 66: // key B & b - ball movement
             ball.toggleAcelaration();

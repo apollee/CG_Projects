@@ -4,7 +4,7 @@ class Ball extends THREE.Object3D {
 
         super();
 
-        var geometry = new THREE.SphereGeometry(10, 32, 32);
+        var geometry = new THREE.SphereGeometry(10, 16, 16);
         var texture = new THREE.TextureLoader().load('textures/800px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg');
         
         var materials = [new THREE.MeshBasicMaterial({map: texture}),
@@ -34,7 +34,7 @@ class Ball extends THREE.Object3D {
 
     updateSpeed() {
         if (time.isFreezed()) return;
-        
+
         this.speed += this.acelaration;
 
         if (this.speed < 0) {

@@ -1,4 +1,8 @@
 var smartMeshes = []
+var allMaterials = []
+
+var toggleWireframe = false;
+var toggleIlumination = false;
 
 class smartMesh extends THREE.Mesh {
     constructor(geometry, materials) {
@@ -8,6 +12,8 @@ class smartMesh extends THREE.Mesh {
 
         this.allMaterials = materials;
         this.on = true;
+
+        allMaterials = allMaterials.concat(materials);
 
         smartMeshes.push(this);
     }
@@ -20,4 +26,5 @@ class smartMesh extends THREE.Mesh {
 
         this.on = !this.on
     }
+
 }

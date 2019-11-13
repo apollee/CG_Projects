@@ -2,7 +2,7 @@ class Dice extends THREE.Object3D {
     constructor(x ,y, z) {
         super();
 
-        var geometry = new THREE.BoxBufferGeometry(15, 15, 15, 15, 15, 15);
+        var geometry = new THREE.BoxBufferGeometry(15, 15, 15, 12, 12, 12);
         var texture = new THREE.TextureLoader().load('textures/1.jpg');
         
         var materials = [new THREE.MeshBasicMaterial({map: texture}),
@@ -30,7 +30,7 @@ class Dice extends THREE.Object3D {
     }
 
     reset() {
-        
+
     }
 
 }
