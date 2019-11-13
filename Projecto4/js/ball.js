@@ -1,13 +1,25 @@
-function createBall(x, y, z) {
-    'use strict';
+class Ball extends THREE.Object3D {
+    constructor(x, y, z) {
+        'use strict';
 
-    var ball = new THREE.Group();
-    var geometry = new THREE.SphereGeometry(10, 32, 32);
-    var texture = new THREE.TextureLoader().load('js/textures/800px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg');
-    
-    var material = new THREE.MeshPhongMaterial({map: texture});
-    var mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(x, y, z);
-    ball.add(mesh);
-    scene.add(ball);
+        super();
+
+        var geometry = new THREE.SphereGeometry(10, 32, 32);
+        var texture = new THREE.TextureLoader().load('textures/800px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg');
+        
+        var materials = [new THREE.MeshBasicMaterial({map: texture}),
+                         new THREE.MeshPhongMaterial({map: texture})
+                        ];
+        var mesh = new smartMesh(geometry, materials);
+
+        this.add(mesh);
+
+        this.world = new THREE.Group();
+        this.position.set(x, y, z);
+
+        this.world.add(this);
+
+        scene.add(this.world);
+    }
+
 }

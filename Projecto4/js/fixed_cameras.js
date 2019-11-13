@@ -1,11 +1,11 @@
 class OrtoCamera extends THREE.OrthographicCamera {
     
-    constructor(frame_position) {
+    constructor() {
         var width = (window.innerWidth / aspectratio) / 6;
         var height = (window.innerHeight / aspectratio) / 6;
         super(-width, width, height, -height, 1, 2000 );
-        this.position.set(-200, 200, 5);//-30, window.innerHeight/2, 500);
-        this.lookAt(frame_position);
+        this.position.set(0, 200, 0);
+        this.lookAt(new THREE.Vector3(0, 0,0));
     }
 
     resize() {
@@ -26,7 +26,7 @@ class PresCamera extends THREE.PerspectiveCamera {
     constructor() {
         super(90, window.innerWidth / window.innerHeight, 1, 1000);
 
-        this.position.set(30, 40, 100);
+        this.position.set(0, 0, 100);
         super.lookAt(new THREE.Vector3(0, 0,0));
     }
 

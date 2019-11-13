@@ -33,13 +33,13 @@ function createScene() {
 
     scene = new THREE.Scene();
     var board = createBoard();
-    createDice(7,35,7);
-    createBall(-7, 20, 45);
+    var dice = new Dice(0, 13, 0);
+    var ball = new Ball(80, 10, 0);
     globLight = new globalLight();
 }
 
 function createCameras() {
-    //ortoCam = new OrtoCamera(frame.position);
+    ortoCam = new OrtoCamera();
     presCam = new PresCamera();
 
     activeCam = presCam;
@@ -73,12 +73,12 @@ function onKeyDown(e) {
     'use strict';
 
     switch(e.keyCode){
-        case 53: // key 5 - top camera view
+        case 49: // key 1 - pres view
             activeCam = presCam;
             activeCam.resize();
             break;
-        case 54: // key 6 - painting camera 
-            //activeCam = ortoCam;
+        case 50: // key 2 - orto camera 
+            activeCam = ortoCam;
             activeCam.resize();
             break;
         case 68: // key D & d - turn on/off directional light source

@@ -1,22 +1,22 @@
-function createDice(x, y, z) {
-    'use strict';
+class Dice extends THREE.Object3D {
+    constructor(x ,y, z) {
+        super();
 
-    var dice = new THREE.Group();
-    var geometry = new THREE.BoxBufferGeometry(15, 15, 15);
-    var texture = new THREE.TextureLoader().load('js/textures/1.jpg');
-    
-    var material = new THREE.MeshPhongMaterial({map: texture});
-    var mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(x, y, z);
-    dice.add(mesh);
-    scene.add(dice);
+        var geometry = new THREE.BoxBufferGeometry(15, 15, 15, 15, 15, 15);
+        var texture = new THREE.TextureLoader().load('textures/1.jpg');
+        
+        var materials = [new THREE.MeshBasicMaterial({map: texture}),
+                         new THREE.MeshPhongMaterial({map: texture})
+                        ];
+        var mesh = new smartMesh(geometry, materials);
 
-    dice.rotateX(Math.PI/4);
-    dice.rotateY(Math.PI/6);
+        mesh.rotateX(Math.PI/4);
+        mesh.rotateY(Math.PI/4);
+        
+        this.add(mesh);
 
+        this.position.set(x, y, z);
+        
+        scene.add(this);
+    }
 }
-
-function createDots(x, y, z) {
-    'use strict';
-}
-
