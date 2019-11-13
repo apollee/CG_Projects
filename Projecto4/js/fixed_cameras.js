@@ -28,12 +28,19 @@ class PresCamera extends THREE.PerspectiveCamera {
     constructor() {
         super(90, window.innerWidth / window.innerHeight, 1, 1000);
 
-        this.position.set(-10, 65, 120);
+        this.initialAspect = this.aspect;
+
+        this.position.set(-25, 75, 120);
         super.lookAt(new THREE.Vector3(0, 0,0));
     }
 
     resize() {
-        this.aspect = renderer.getSize().width / renderer.getSize().height;
+        var aspectratio = window.innerWidth / window.innerHeight;
+        
+        if (aspectratio < this.initialAspect)
+            this.zoom = aspectratio / this.initialAspect;
+
+        this.aspect = aspectratio;
         this.updateProjectionMatrix();
     }
 }
