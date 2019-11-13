@@ -6,9 +6,7 @@ class globalLight extends THREE.DirectionalLight {
         scene.add(this.target);
 
         this.target = scene;
-
-        this.position.set(100, 100, 100);
-
+        this.position.set(10, 50, 70);
         this.on = true;
         scene.add(this);
     }

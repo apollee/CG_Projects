@@ -32,11 +32,10 @@ function createScene() {
     'use strict';
 
     scene = new THREE.Scene();
-    createBoard();
+    var board = createBoard();
     createDice(7,35,7);
     createBall(-7, 20, 45);
-    //globLight = new globalLight(ico);
-    //spotLHandler = new spotlightHandler()
+    globLight = new globalLight();
 }
 
 function createCameras() {
