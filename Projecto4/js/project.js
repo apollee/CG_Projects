@@ -4,7 +4,7 @@ var scene, renderer;
 
 var reset = false
 
-var presCam, ortoCam, activeCam;
+var presCam, ortoCam, pauseCam, activeCam;
 
 var gLight;
 var pLight;
@@ -22,12 +22,11 @@ function init() {
 
     createScene();
     createCameras();
+    time = new timeProj();
     render();
 
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("resize", onResize);
-
-    time = new timeProj();
 }
 
 function createScene() {
@@ -59,6 +58,7 @@ function resetScene() {
 function createCameras() {
     ortoCam = new OrtoCamera();
     presCam = new PresCamera();
+    pauseCam = new PauseCamera();
 
     activeCam = presCam;
 }
@@ -66,7 +66,7 @@ function createCameras() {
 function render() {
     'use strict'
 
-    renderer.render(scene, activeCam);
+    renderer.render(scene, time.isFreezed() ? pauseCam : activeCam);
 }
 
 function animate() {

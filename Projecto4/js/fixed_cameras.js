@@ -23,6 +23,30 @@ class OrtoCamera extends THREE.OrthographicCamera {
     }
 }
 
+class PauseCamera extends OrtoCamera {
+    constructor() {
+        super();
+
+        this.position.set(0, 220, 0);
+
+        createPauseMessage(0, 210, -50);
+    }
+
+}
+
+function createPauseMessage(x, y, z) {
+    var texture = new THREE.TextureLoader().load('textures/pause1.jpeg');
+    var pauseMsg = new THREE.Object3D();
+    var material = new THREE.MeshBasicMaterial({map: texture});
+    var geometry = new THREE.PlaneGeometry(100, 50, 100, 50);
+    var mesh = new THREE.Mesh(geometry, material);
+
+    mesh.rotateX(-Math.PI/2);
+    pauseMsg.add(mesh);
+    pauseMsg.position.set(x, y, z);
+    scene.add(pauseMsg);
+}
+
 class PresCamera extends THREE.PerspectiveCamera {
 
     constructor() {

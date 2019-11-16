@@ -30,8 +30,7 @@ class pointLight extends THREE.PointLight {
     constructor() {
         super();
 
-        this.position.set(30, 20, 0);
-
+        this.position.set(30, 50, 0);
         this.on = true
 
         scene.add(this);

@@ -8,7 +8,7 @@ class Ball extends THREE.Object3D {
         var texture = new THREE.TextureLoader().load('textures/800px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg');
         
         var materials = [new THREE.MeshBasicMaterial({map: texture}),
-                         new THREE.MeshPhongMaterial({map: texture})
+                         new THREE.MeshPhongMaterial({map: texture, shininess: 60})
                         ];
         var mesh = new smartMesh(geometry, materials);
 
