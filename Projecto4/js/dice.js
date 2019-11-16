@@ -36,10 +36,11 @@ function makeDice() {
         for (var i in [1,2,3,4,5,6]) {
             i++;
             var geometry = new THREE.PlaneGeometry(15, 15, 12, 12);
-            var texture = new THREE.TextureLoader().load('textures/'+i+'.jpg');
+            var texture = new THREE.TextureLoader().load('textures/b'+i+'.jpg');
+            var bumpMap = new THREE.TextureLoader().load('textures/b'+i+'.jpg');
             
             var materials = [new THREE.MeshBasicMaterial({map: texture}),
-                             new THREE.MeshPhongMaterial({map: texture})
+                             new THREE.MeshPhongMaterial({map: texture, bumpMap: bumpMap,})
                             ];
             face = new smartMesh(geometry, materials);
 
