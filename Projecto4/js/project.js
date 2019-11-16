@@ -96,6 +96,7 @@ function onResize() {
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     activeCam.resize();
+    pauseCam.resize();
 }
 
 function onKeyDown(e) {
@@ -130,6 +131,7 @@ function onKeyDown(e) {
             break;
         case 83: // key S & s - stop scene
             time.freezeUnfreeze();
+            pauseCam.resize();
             break;
     }
 }

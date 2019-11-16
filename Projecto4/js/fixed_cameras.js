@@ -31,7 +31,6 @@ class PauseCamera extends OrtoCamera {
 
         createPauseMessage(0, 210, -50);
     }
-
 }
 
 function createPauseMessage(x, y, z) {

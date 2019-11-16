@@ -4,8 +4,8 @@ function createBoard() {
     var texture = new THREE.TextureLoader().load('textures/wooden-background-chess-board-wood-texture-pine-vector-19050058.jpg');
     var bumpMap = new THREE.TextureLoader().load('textures/14693-bump.jpg');
     var board = new THREE.Group();
-    var materials = [new THREE.MeshBasicMaterial({map: texture}),
-                     new THREE.MeshPhongMaterial({map: texture, bumpMap: bumpMap})
+    var materials = [new THREE.MeshBasicMaterial({map: texture, side:THREE.DoubleSide}),
+                     new THREE.MeshPhongMaterial({map: texture, bumpMap: bumpMap, side:THREE.DoubleSide})
                     ];
     var geometry = new THREE.PlaneGeometry(200, 200, 100, 100);
     var mesh = new smartMesh(geometry, materials);
